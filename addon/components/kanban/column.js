@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { debug } from '@ember/debug';
 
+import { inject as service } from '@ember/service';
 /**
  * Kanban Column Component
  *
@@ -15,6 +16,7 @@ import { debug } from '@ember/debug';
  * <Kanban::Column @column={{column}} />
  */
 export default class KanbanColumnComponent extends Component {
+    @service intl;
     @tracked isDragOver = false;
     @tracked dragOverPosition = null;
 
@@ -153,7 +155,7 @@ export default class KanbanColumnComponent extends Component {
      * Get column title
      */
     get title() {
-        return this.args.column?.title || 'Untitled Column';
+        return this.args.column?.title || this.intl.t('literal.ember-ui.untitled-column');
     }
 
     /**

@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class TableEmptyStateComponent extends Component {
+    @service intl;
     @service docsPanel;
 
     get isCompact() {
@@ -20,7 +21,7 @@ export default class TableEmptyStateComponent extends Component {
             return this.args.filteredTitle;
         }
 
-        return this.args.title ?? 'No records yet';
+        return this.args.title ?? this.intl.t('literal.ember-ui.no-records-yet');
     }
 
     get description() {
@@ -60,11 +61,11 @@ export default class TableEmptyStateComponent extends Component {
     }
 
     get docsText() {
-        return this.args.docsText ?? 'Read guide';
+        return this.args.docsText ?? this.intl.t('literal.ember-ui.read-guide');
     }
 
     get docsTitle() {
-        return this.args.docsTitle ?? this.title ?? 'Documentation';
+        return this.args.docsTitle ?? this.title ?? this.intl.t('literal.ember-ui.documentation');
     }
 
     get docsSource() {

@@ -9,6 +9,7 @@ import { guidFor } from '@ember/object/internals';
 const { assign } = Object;
 
 export default class ModalsManagerService extends Service {
+    @service intl;
     @service events;
 
     @tracked modals = [];
@@ -24,7 +25,7 @@ export default class ModalsManagerService extends Service {
         declineButtonFulfilledText: 'No',
         declineButtonPendingText: 'No',
         declineButtonRejectedText: 'No',
-        cancel: 'Cancel',
+        cancel: this.intl.t('literal.ember-ui.cancel'),
         backdrop: true,
         backdropClose: true,
         backdropTransitionDuration: 150,
@@ -210,7 +211,7 @@ export default class ModalsManagerService extends Service {
     @action async displayLoader(options = {}) {
         await this.done();
 
-        this.show('modal/layouts/loading', { title: 'Loading...', ...options });
+        this.show('modal/layouts/loading', { title: this.intl.t('literal.ember-ui.loading'), ...options });
     }
 
     /**

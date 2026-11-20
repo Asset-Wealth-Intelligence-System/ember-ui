@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class ModalsQueryBuilderComputedColumnEditorComponent extends Component {
+    @service intl;
     @service fetch;
     @service notifications;
     @service modalsManager;
@@ -35,12 +36,12 @@ export default class ModalsQueryBuilderComputedColumnEditorComponent extends Com
 
     get typeOptions() {
         return [
-            { value: 'string', label: 'Text' },
-            { value: 'integer', label: 'Integer' },
-            { value: 'decimal', label: 'Decimal' },
-            { value: 'date', label: 'Date' },
-            { value: 'datetime', label: 'Date & Time' },
-            { value: 'boolean', label: 'Boolean' },
+            { value: 'string', label: this.intl.t('literal.ember-ui.text') },
+            { value: 'integer', label: this.intl.t('literal.ember-ui.integer') },
+            { value: 'decimal', label: this.intl.t('literal.ember-ui.decimal') },
+            { value: 'date', label: this.intl.t('literal.ember-ui.date') },
+            { value: 'datetime', label: this.intl.t('literal.ember-ui.date-time') },
+            { value: 'boolean', label: this.intl.t('literal.ember-ui.boolean') },
         ];
     }
 
@@ -163,24 +164,24 @@ export default class ModalsQueryBuilderComputedColumnEditorComponent extends Com
     get exampleExpressions() {
         return [
             {
-                name: 'Calculate Days Between Dates',
+                name: this.intl.t('literal.ember-ui.calculate-days-between-dates'),
                 expression: 'DATEDIFF(end_date, start_date) + 1',
-                description: 'Calculate the number of days between two dates',
+                description: this.intl.t('literal.ember-ui.calculate-the-number-of-days-between-two-dates'),
             },
             {
-                name: 'Concatenate Fields',
+                name: this.intl.t('literal.ember-ui.concatenate-fields'),
                 expression: "CONCAT(first_name, ' ', last_name)",
-                description: 'Combine multiple text fields',
+                description: this.intl.t('literal.ember-ui.combine-multiple-text-fields'),
             },
             {
-                name: 'Conditional Value',
+                name: this.intl.t('literal.ember-ui.conditional-value'),
                 expression: "CASE WHEN amount > 100 THEN 'High' ELSE 'Low' END",
-                description: 'Return different values based on conditions',
+                description: this.intl.t('literal.ember-ui.return-different-values-based-on-conditions'),
             },
             {
-                name: 'Safe Division',
+                name: this.intl.t('literal.ember-ui.safe-division'),
                 expression: 'ROUND(amount / NULLIF(quantity, 0), 2)',
-                description: 'Divide with protection against division by zero',
+                description: this.intl.t('literal.ember-ui.divide-with-protection-against-division-by-zero'),
             },
         ];
     }

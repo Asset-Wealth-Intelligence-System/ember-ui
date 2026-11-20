@@ -16,7 +16,7 @@
                     {{#if @options.subtitle}}
                         {{@options.message}}
                     {{else}}
-                        Are you sure you want to
+                        {{t "literal.ember-ui.are-you-sure-you-want-to"}}
                         {{@options.verb}}
                         these
                         {{pluralize @options.modelName}}?
@@ -27,7 +27,7 @@
                         {{#if @options.message}}
                             {{@options.message}}
                         {{else}}
-                            You have selected
+                            {{t "literal.ember-ui.you-have-selected"}}
                             {{pluralize @options.count @options.modelName}}
                             for
                             {{@options.verb}}.

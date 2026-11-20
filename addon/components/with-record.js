@@ -7,6 +7,7 @@ import { task } from 'ember-concurrency';
 import isUuid from '@fleetbase/ember-core/utils/is-uuid';
 
 export default class WithRecordComponent extends Component {
+    @service intl;
     @service store;
     @tracked record = null;
     @tracked error = null;
@@ -29,7 +30,7 @@ export default class WithRecordComponent extends Component {
             this.record = record;
             return record;
         } catch (err) {
-            this.error = err.message ?? 'Failed to load record.';
+            this.error = err.message ?? this.intl.t('literal.ember-ui.failed-to-load-record');
             debug('<WithRecord /> Failed to load record for use in template: ' + err.message);
         }
     }

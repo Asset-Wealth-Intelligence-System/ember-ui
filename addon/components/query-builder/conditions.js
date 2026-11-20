@@ -4,7 +4,9 @@ import { action } from '@ember/object';
 import { isArray } from '@ember/array';
 import { task, timeout } from 'ember-concurrency';
 
+import { inject as service } from '@ember/service';
 export default class QueryBuilderConditionsComponent extends Component {
+    @service intl;
     @tracked conditionGroups = [];
 
     constructor() {
@@ -85,7 +87,7 @@ export default class QueryBuilderConditionsComponent extends Component {
     }
 
     get conditionsSummary() {
-        if (!this.hasConditions) return 'No conditions';
+        if (!this.hasConditions) return this.intl.t('literal.ember-ui.no-conditions');
 
         const totalConditions = this.conditionGroups.reduce((total, group) => total + group.conditions.length, 0);
         const groupCount = this.conditionGroups.filter((group) => group.isNested).length;
@@ -104,11 +106,11 @@ export default class QueryBuilderConditionsComponent extends Component {
 
     get conditionsMessage() {
         if (!this.args.selectedColumns?.length && !this.args.joins?.length) {
-            return 'Select columns first to enable filtering';
+            return this.intl.t('literal.ember-ui.select-columns-first-to-enable-filtering');
         }
 
         if (!this.canAddConditions) {
-            return 'No selected columns available for filtering';
+            return this.intl.t('literal.ember-ui.no-selected-columns-available-for-filtering');
         }
 
         return null;
@@ -116,8 +118,8 @@ export default class QueryBuilderConditionsComponent extends Component {
 
     get booleanOptions() {
         return [
-            { value: true, label: 'True' },
-            { value: false, label: 'False' },
+            { value: true, label: this.intl.t('literal.ember-ui.true') },
+            { value: false, label: this.intl.t('literal.ember-ui.false') },
         ];
     }
 
@@ -126,38 +128,38 @@ export default class QueryBuilderConditionsComponent extends Component {
 
         const baseOperators = [
             { value: '=', label: 'equals', icon: 'equals' },
-            { value: '!=', label: 'not equals', icon: 'not-equal' },
-            { value: 'is_null', label: 'is empty', icon: 'ban' },
-            { value: 'is_not_null', label: 'is not empty', icon: 'check' },
+            { value: '!=', label: this.intl.t('literal.ember-ui.not-equals'), icon: 'not-equal' },
+            { value: 'is_null', label: this.intl.t('literal.ember-ui.is-empty'), icon: 'ban' },
+            { value: 'is_not_null', label: this.intl.t('literal.ember-ui.is-not-empty'), icon: 'check' },
         ];
 
         const stringOperators = [
             { value: 'like', label: 'contains', icon: 'search' },
-            { value: 'not_like', label: 'does not contain', icon: 'search-minus' },
-            { value: 'starts_with', label: 'starts with', icon: 'arrow-right' },
-            { value: 'ends_with', label: 'ends with', icon: 'arrow-left' },
-            { value: 'in', label: 'is one of', icon: 'list' },
-            { value: 'not_in', label: 'is not one of', icon: 'list-slash' },
+            { value: 'not_like', label: this.intl.t('literal.ember-ui.does-not-contain'), icon: 'search-minus' },
+            { value: 'starts_with', label: this.intl.t('literal.ember-ui.starts-with'), icon: 'arrow-right' },
+            { value: 'ends_with', label: this.intl.t('literal.ember-ui.ends-with'), icon: 'arrow-left' },
+            { value: 'in', label: this.intl.t('literal.ember-ui.is-one-of'), icon: 'list' },
+            { value: 'not_in', label: this.intl.t('literal.ember-ui.is-not-one-of'), icon: 'list-slash' },
         ];
 
         const numberOperators = [
-            { value: '>', label: 'greater than', icon: 'greater-than' },
-            { value: '<', label: 'less than', icon: 'less-than' },
-            { value: '>=', label: 'greater than or equal', icon: 'greater-than-equal' },
-            { value: '<=', label: 'less than or equal', icon: 'less-than-equal' },
+            { value: '>', label: this.intl.t('literal.ember-ui.greater-than'), icon: 'greater-than' },
+            { value: '<', label: this.intl.t('literal.ember-ui.less-than'), icon: 'less-than' },
+            { value: '>=', label: this.intl.t('literal.ember-ui.greater-than-or-equal'), icon: 'greater-than-equal' },
+            { value: '<=', label: this.intl.t('literal.ember-ui.less-than-or-equal'), icon: 'less-than-equal' },
             { value: 'between', label: 'between', icon: 'arrows-left-right' },
-            { value: 'not_between', label: 'not between', icon: 'arrows-left-right-slash' },
-            { value: 'in', label: 'is one of', icon: 'list' },
-            { value: 'not_in', label: 'is not one of', icon: 'list-slash' },
+            { value: 'not_between', label: this.intl.t('literal.ember-ui.not-between'), icon: 'arrows-left-right-slash' },
+            { value: 'in', label: this.intl.t('literal.ember-ui.is-one-of'), icon: 'list' },
+            { value: 'not_in', label: this.intl.t('literal.ember-ui.is-not-one-of'), icon: 'list-slash' },
         ];
 
         const dateOperators = [
             { value: '>', label: 'after', icon: 'calendar-plus' },
             { value: '<', label: 'before', icon: 'calendar-minus' },
-            { value: '>=', label: 'on or after', icon: 'calendar-check' },
-            { value: '<=', label: 'on or before', icon: 'calendar-xmark' },
-            { value: 'between', label: 'between dates', icon: 'calendar-range' },
-            { value: 'not_between', label: 'not between dates', icon: 'calendar-range-slash' },
+            { value: '>=', label: this.intl.t('literal.ember-ui.on-or-after'), icon: 'calendar-check' },
+            { value: '<=', label: this.intl.t('literal.ember-ui.on-or-before'), icon: 'calendar-xmark' },
+            { value: 'between', label: this.intl.t('literal.ember-ui.between-dates'), icon: 'calendar-range' },
+            { value: 'not_between', label: this.intl.t('literal.ember-ui.not-between-dates'), icon: 'calendar-range-slash' },
         ];
 
         switch (field.type) {

@@ -35,7 +35,8 @@ export default class LayoutMobileNavbarComponent extends Component {
         const visibleMenuItems = [];
         for (let i = 0; i < headerMenuItems.length; i++) {
             const menuItem = headerMenuItems[i];
-            if (this.abilities.can(`${menuItem.id} see extension`)) {
+            const isEnergyOps = menuItem.id === 'energy-ops' || menuItem.slug === 'energy-ops';
+            if (isEnergyOps || this.abilities.can(`${menuItem.id} see extension`)) {
                 visibleMenuItems.pushObject(menuItem);
             }
         }

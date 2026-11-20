@@ -1,12 +1,12 @@
 <section class="chat-inbox-panel" ...attributes>
     <header class="chat-inbox-panel-header">
         <div class="chat-inbox-panel-title">
-            <h2>Messages</h2>
-            <span>{{pluralize @unreadCount "unread conversation"}}</span>
+            <h2>{{t "literal.ember-ui.messages"}}</h2>
+            <span>{{t "literal.ember-ui.unread-conversation-count" count=@unreadCount}}</span>
         </div>
         <div class="chat-inbox-panel-actions">
-            <Button @type="primary" @icon="plus" @text="New Chat" @size="xs" @onClick={{@startChat}} />
-            <button type="button" class="chat-inbox-icon-button" aria-label="Close chat inbox" {{on "click" @close}}>
+            <Button @type="primary" @icon="plus" @text={{t "literal.ember-ui.new-chat"}} @size="xs" @onClick={{@startChat}} />
+            <button type="button" class="chat-inbox-icon-button" aria-label={{t "literal.ember-ui.close-chat-inbox"}} {{on "click" @close}}>
                 <FaIcon @icon="times" />
             </button>
         </div>
@@ -14,13 +14,13 @@
 
     <div class="chat-inbox-search">
         <FaIcon @icon="search" />
-        <input type="search" value={{@searchQuery}} placeholder="Search conversations" {{on "input" @setSearchQuery}} />
+        <input type="search" value={{@searchQuery}} placeholder={{t "literal.ember-ui.search-conversations"}} {{on "input" @setSearchQuery}} />
     </div>
 
     <div class="chat-inbox-list">
         {{#if @isLoading}}
             <div class="chat-inbox-empty-state">
-                <Spinner @loadingMessage="Loading conversations" />
+                <Spinner @loadingMessage={{t "literal.ember-ui.loading-conversations"}} />
             </div>
         {{else if this.hasChannels}}
             {{#each @channels as |channel|}}
@@ -31,9 +31,9 @@
                 <div class="chat-inbox-empty-icon">
                     <FaIcon @icon="message" />
                 </div>
-                <h3>No conversations found</h3>
-                <p>Start a new chat or adjust your search.</p>
-                <Button @type="primary" @icon="plus" @text="New Chat" @size="sm" @onClick={{@startChat}} />
+                <h3>{{t "literal.ember-ui.no-conversations-found"}}</h3>
+                <p>{{t "literal.ember-ui.start-a-new-chat-or-adjust-your-search"}}</p>
+                <Button @type="primary" @icon="plus" @text={{t "literal.ember-ui.new-chat"}} @size="sm" @onClick={{@startChat}} />
             </div>
         {{/if}}
     </div>

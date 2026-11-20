@@ -2,10 +2,10 @@
     <div class="query-builder-panel-header">
         <div class="query-builder-panel-title">
             <FaIcon @icon="sort" @size="sm" class="mr-2" />
-            Sort By
+            {{t "literal.ember-ui.sort-by"}}
         </div>
         <div class="text-xs text-gray-500">
-            {{if this.sortByItems.length (concat this.sortByItems.length " sort" (if (gt this.sortByItems.length 1) "s")) "No sorting"}}
+            {{if this.sortByItems.length (concat this.sortByItems.length " sort" (if (gt this.sortByItems.length 1) "s")) (t "literal.ember-ui.no-sorting")}}
         </div>
     </div>
 
@@ -16,14 +16,14 @@
 
                     <div>
                         <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Sort Column
+                            {{t "literal.ember-ui.sort-column"}}
                         </label>
                         <div class="fleetbase-model-select fleetbase-power-select ember-model-select">
                             <PowerSelect
                                 @options={{this.availableSortColumns}}
                                 @selected={{this.selectedSortBy}}
                                 @onChange={{this.selectSortColumn}}
-                                @placeholder="Select column..."
+                                @placeholder={{t "literal.ember-ui.select-column"}}
                                 @triggerClass="form-select form-input"
                                 @searchEnabled={{true}}
                                 @searchField="sortLabel"
@@ -39,14 +39,14 @@
 
                     <div>
                         <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Direction
+                            {{t "literal.ember-ui.direction"}}
                         </label>
                         <div class="fleetbase-model-select fleetbase-power-select ember-model-select">
                             <PowerSelect
                                 @options={{this.directions}}
                                 @selected={{this.selectedSortDirection}}
                                 @onChange={{this.selectSortDirection}}
-                                @placeholder="Select direction..."
+                                @placeholder={{t "literal.ember-ui.select-direction"}}
                                 @triggerClass="form-select form-input"
                                 as |option|
                             >
@@ -59,13 +59,13 @@
                     </div>
                 </div>
 
-                <Button @text="Add Sort" @type="primary" @icon="save" @size="xs" @onClick={{this.addSortBy}} @disabled={{not (and this.selectedSortBy this.selectedSortDirection)}} />
+                <Button @text={{t "literal.ember-ui.add-sort"}} @type="primary" @icon="save" @size="xs" @onClick={{this.addSortBy}} @disabled={{not (and this.selectedSortBy this.selectedSortDirection)}} />
             </div>
 
             {{#if this.sortByItems.length}}
                 <div class="mt-6 space-y-3">
                     <div class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Sort Order (drag to reorder)
+                        {{t "literal.ember-ui.sort-order-drag-to-reorder"}}
                     </div>
 
                     <DragSortList @items={{this.sortByItems}} @dragEndAction={{this.reorderSortBy}} class="drag-sort-list" as |item index|>
@@ -98,7 +98,7 @@
                                     type="button"
                                     class="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-200 p-1"
                                     {{on "click" (fn this.toggleSortDirection index)}}
-                                    title="Toggle sort direction"
+                                    title={{t "literal.ember-ui.toggle-sort-direction"}}
                                 >
                                     <FaIcon @icon="arrows-up-down" @size="sm" />
                                 </button>
@@ -126,7 +126,7 @@
                         </div>
                         {{#unless @selectedColumns.length}}
                             <div class="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                                Select columns in the "Select Fields" section first
+                                {{t "literal.ember-ui.select-columns-in-the-select-fields-section-firs-948cd"}}
                             </div>
                         {{/unless}}
                     </div>
@@ -139,11 +139,11 @@
                 <div class="flex items-start space-x-2">
                     <FaIcon @icon="info-circle" @size="sm" class="text-blue-600 dark:text-blue-400 mt-0.5" />
                     <div class="text-xs text-blue-800 dark:text-blue-200">
-                        <div class="font-medium mb-1">Sorting Rules:</div>
+                        <div class="font-medium mb-1">{{t "literal.ember-ui.sorting-rules"}}</div>
                         <ul class="space-y-1 text-blue-700 dark:text-blue-300">
-                            <li>• You can only sort by columns that are selected</li>
-                            <li>• Sort order matters - drag to reorder priority</li>
-                            <li>• Both regular and aggregated columns can be sorted</li>
+                            <li>{{t "literal.ember-ui.you-can-only-sort-by-columns-that-are-selected"}}</li>
+                            <li>{{t "literal.ember-ui.sort-order-matters-drag-to-reorder-priority"}}</li>
+                            <li>{{t "literal.ember-ui.both-regular-and-aggregated-columns-can-be-sorte-06389"}}</li>
                         </ul>
                     </div>
                 </div>

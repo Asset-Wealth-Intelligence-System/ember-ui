@@ -4,7 +4,7 @@
             {{#if this.primaryAction.icon}}
                 <FaIcon @icon={{this.primaryAction.icon}} @prefix={{this.primaryAction.iconPrefix}} @size="xs" />
             {{/if}}
-            <span>{{this.primaryAction.label}}</span>
+            <span>{{t-literal this.primaryAction.label}}</span>
         </button>
     {{/if}}
 
@@ -14,14 +14,14 @@
             <input
                 type="search"
                 value={{this.query}}
-                placeholder={{or @searchPlaceholder "Search or jump to..."}}
-                aria-label={{or @searchLabel "Search navigation"}}
+                placeholder={{or @searchPlaceholder (t "literal.ember-ui.search-or-jump-to")}}
+                aria-label={{or @searchLabel (t "literal.ember-ui.search-navigation")}}
                 {{did-insert this.registerSearchInput}}
                 {{on "focus" this.openSearch}}
                 {{on "input" this.updateQuery}}
             />
             {{#if this.hasQuery}}
-                <button type="button" class="next-sidebar-navigator-search-clear" aria-label="Clear search" {{on "click" this.clearQuery}}>
+                <button type="button" class="next-sidebar-navigator-search-clear" aria-label={{t "literal.ember-ui.clear-search"}} {{on "click" this.clearQuery}}>
                     <FaIcon @icon="times" @size="xs" />
                 </button>
             {{else if this.searchShortcutEnabled}}
@@ -31,12 +31,12 @@
 
         {{#if (and this.hasSearchPopover this.popoverTarget)}}
             {{#in-element this.popoverTarget insertBefore=null}}
-                <button type="button" class={{this.searchOverlayClass}} aria-label="Close search" {{on "click" this.closeSearch}}></button>
+                <button type="button" class={{this.searchOverlayClass}} aria-label={{t "literal.ember-ui.close-search"}} {{on "click" this.closeSearch}}></button>
 
                 <div
                     class={{this.searchPopoverClass}}
                     role="dialog"
-                    aria-label="Navigation search results"
+                    aria-label={{t "literal.ember-ui.navigation-search-results"}}
                     style={{this.popoverStyle}}
                     {{on "keydown" this.handleSearchPanelKeydown}}
                 >
@@ -45,19 +45,19 @@
                         <input
                             type="search"
                             value={{this.query}}
-                            placeholder={{or @searchPlaceholder "Search or jump to..."}}
-                            aria-label={{or @searchLabel "Search navigation"}}
+                            placeholder={{or @searchPlaceholder (t "literal.ember-ui.search-or-jump-to")}}
+                            aria-label={{or @searchLabel (t "literal.ember-ui.search-navigation")}}
                             {{did-insert this.registerPortalSearchInput}}
                             {{on "input" this.updateQuery}}
                         />
                         {{#if this.hasQuery}}
-                            <button type="button" class="next-sidebar-navigator-search-clear" aria-label="Clear search" {{on "click" this.clearQuery}}>
+                            <button type="button" class="next-sidebar-navigator-search-clear" aria-label={{t "literal.ember-ui.clear-search"}} {{on "click" this.clearQuery}}>
                                 <FaIcon @icon="times" @size="xs" />
                             </button>
                         {{else}}
-                            <span class="next-sidebar-navigator-kbd">Esc</span>
+                            <span class="next-sidebar-navigator-kbd">{{t "literal.ember-ui.esc"}}</span>
                         {{/if}}
-                        <button type="button" class="next-sidebar-navigator-search-close" aria-label="Close search" {{on "click" this.closeSearch}}>
+                        <button type="button" class="next-sidebar-navigator-search-close" aria-label={{t "literal.ember-ui.close-search"}} {{on "click" this.closeSearch}}>
                             <FaIcon @icon="times" @size="xs" />
                         </button>
                     </div>
@@ -65,12 +65,12 @@
                     {{#if this.isSearching}}
                         <div class="next-sidebar-navigator-search-status">
                             <FaIcon @icon="spinner" @spin={{true}} />
-                            <span>Searching...</span>
+                            <span>{{t "literal.ember-ui.searching"}}</span>
                         </div>
                     {{else if this.emptySearch}}
                         <div class="next-sidebar-navigator-search-status">
                             <FaIcon @icon="magnifying-glass" />
-                            <span>No navigation results found.</span>
+                            <span>{{t "literal.ember-ui.no-navigation-results-found"}}</span>
                         </div>
                     {{else if this.hasQuery}}
                         <div class="next-sidebar-navigator-search-results" {{did-insert this.registerSearchResults}}>
@@ -88,7 +88,7 @@
                                         {{/if}}
                                     </span>
                                     <span class="next-sidebar-navigator-search-result-content">
-                                        <span class="next-sidebar-navigator-search-result-label">{{result.label}}</span>
+                                        <span class="next-sidebar-navigator-search-result-label">{{t-literal result.label}}</span>
                                         <span class="next-sidebar-navigator-search-result-description">
                                             {{#if result.description}}
                                                 {{result.description}}
@@ -113,7 +113,7 @@
                     {{else}}
                         <div class="next-sidebar-navigator-search-status">
                             <FaIcon @icon="keyboard" />
-                            <span>Start typing to search</span>
+                            <span>{{t "literal.ember-ui.start-typing-to-search"}}</span>
                         </div>
                     {{/if}}
                 </div>
@@ -132,7 +132,7 @@
                         <span class="next-sidebar-navigator-back-icon">
                             <FaIcon @icon="chevron-left" @size="xs" />
                         </span>
-                        <span>{{or outgoing.parent.label outgoing.parent.title}}</span>
+                        <span>{{t-literal (or outgoing.parent.label outgoing.parent.title)}}</span>
                     </div>
                 {{/if}}
 
@@ -149,9 +149,9 @@
                             {{/if}}
                         </span>
                         <span class="next-sidebar-navigator-item-content">
-                            <span class="next-sidebar-navigator-item-label">{{or item.label item.title}}</span>
+                            <span class="next-sidebar-navigator-item-label">{{t-literal (or item.label item.title)}}</span>
                             {{#if (this.itemDescriptionVisible item)}}
-                                <span class="next-sidebar-navigator-item-description">{{item.description}}</span>
+                                <span class="next-sidebar-navigator-item-description">{{t-literal item.description}}</span>
                             {{/if}}
                         </span>
                         {{#if item.badge}}
@@ -173,7 +173,7 @@
                     <span class="next-sidebar-navigator-back-icon">
                         <FaIcon @icon="chevron-left" @size="xs" />
                     </span>
-                    <span>{{this.title}}</span>
+                    <span>{{t-literal this.title}}</span>
                 </button>
             {{/if}}
 
@@ -191,9 +191,9 @@
                         {{/if}}
                     </span>
                     <span class="next-sidebar-navigator-item-content">
-                        <span class="next-sidebar-navigator-item-label">{{or item.label item.title}}</span>
+                        <span class="next-sidebar-navigator-item-label">{{t-literal (or item.label item.title)}}</span>
                         {{#if (this.itemDescriptionVisible item)}}
-                            <span class="next-sidebar-navigator-item-description">{{item.description}}</span>
+                            <span class="next-sidebar-navigator-item-description">{{t-literal item.description}}</span>
                         {{/if}}
                     </span>
                     {{#if item.badge}}

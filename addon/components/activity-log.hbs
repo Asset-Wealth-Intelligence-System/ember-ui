@@ -62,13 +62,13 @@
                                             @shiftOptions={{hash padding=12}}
                                             @lazyRender={{true}}
                                         >
-                                            <div class="activity-log-changes-table {{if this.showAttributePreviousValues 'has-previous-values' 'without-previous-values'}}" role="table" aria-label="Changed attributes">
+                                            <div class="activity-log-changes-table {{if this.showAttributePreviousValues 'has-previous-values' 'without-previous-values'}}" role="table" aria-label={{t "literal.ember-ui.changed-attributes"}}>
                                                 <div class="activity-log-changes-row activity-log-changes-head" role="row">
-                                                    <div role="columnheader">Attribute</div>
+                                                    <div role="columnheader">{{t "literal.ember-ui.attribute"}}</div>
                                                     {{#if this.showAttributePreviousValues}}
-                                                        <div role="columnheader">Previous value</div>
+                                                        <div role="columnheader">{{t "literal.ember-ui.previous-value"}}</div>
                                                     {{/if}}
-                                                    <div role="columnheader">New value</div>
+                                                    <div role="columnheader">{{t "literal.ember-ui.new-value"}}</div>
                                                 </div>
 
                                                 {{#each item.changes as |change|}}
@@ -120,11 +120,11 @@
     {{else}}
         <div class="activity-log-empty">
             {{#if this.loadActivities.isRunning}}
-                <Spinner @loadingMessage="Loading activity..." />
+                <Spinner @loadingMessage={{t "literal.ember-ui.loading-activity"}} />
             {{else}}
                 <div class="flex space-x-2">
                     <FaIcon @icon="bars-staggered" @size="lg" class="activity-log-empty-icon" />
-                    <div class="activity-log-empty-text">No activity yet</div>
+                    <div class="activity-log-empty-text">{{t "literal.ember-ui.no-activity-yet"}}</div>
                 </div>
             {{/if}}
         </div>

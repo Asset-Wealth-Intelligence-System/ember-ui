@@ -1,10 +1,10 @@
 <Modal::Default @modalIsOpened={{@modalIsOpened}} @options={{@options}} @confirm={{@onConfirm}} @decline={{@onDecline}}>
     <div class="modal-body-container">
         <InfoBlock @type="info" @icon="lightbulb" @iconSize="lg" class="mb-5">
-            <div class="font-extrabold">Let's verify your phone number instead.</div>
-            <div>Confirm your phone number below and click send to receive a verification code by SMS.</div>
+            <div class="font-extrabold">{{t "literal.ember-ui.let-s-verify-your-phone-number-instead"}}</div>
+            <div>{{t "literal.ember-ui.confirm-your-phone-number-below-and-click-send-t-03555"}}</div>
         </InfoBlock>
-        <InputGroup @name="Verify your phone number" @helpText="Have a second look and confirm your phone number is correct.">
+        <InputGroup @name={{t "literal.ember-ui.verify-your-phone-number"}} @helpText={{t "literal.ember-ui.have-a-second-look-and-confirm-your-phone-number-17e89"}}>
             <PhoneInput @value={{@options.phone}} @onInput={{fn (mut @options.phone)}} class="form-input input-lg w-full" />
         </InputGroup>
     </div>

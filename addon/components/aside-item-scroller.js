@@ -2,7 +2,9 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action, computed, get } from '@ember/object';
 
+import { inject as service } from '@ember/service';
 export default class AsideItemScrollerComponent extends Component {
+    @service intl;
     @tracked items = [];
     @tracked selected;
 
@@ -63,6 +65,6 @@ export default class AsideItemScrollerComponent extends Component {
     }
 
     @computed('args.title') get title() {
-        return this.args.title ?? 'Directory';
+        return this.args.title ?? this.intl.t('literal.ember-ui.directory');
     }
 }

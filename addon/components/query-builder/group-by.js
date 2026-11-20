@@ -2,7 +2,9 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
+import { inject as service } from '@ember/service';
 export default class QueryBuilderGroupByComponent extends Component {
+    @service intl;
     @tracked selectedGroupBy = null;
     @tracked selectedAggregateFn = null;
     @tracked selectedAggregateBy = null;
@@ -15,12 +17,12 @@ export default class QueryBuilderGroupByComponent extends Component {
 
     get aggregateFunctions() {
         return [
-            { value: 'count', label: 'Count', icon: 'hashtag' },
-            { value: 'sum', label: 'Sum', icon: 'plus' },
-            { value: 'avg', label: 'Average', icon: 'chart-line' },
-            { value: 'min', label: 'Minimum', icon: 'arrow-down' },
-            { value: 'max', label: 'Maximum', icon: 'arrow-up' },
-            { value: 'group_concat', label: 'Concatenate', icon: 'link' },
+            { value: 'count', label: this.intl.t('literal.ember-ui.count'), icon: 'hashtag' },
+            { value: 'sum', label: this.intl.t('literal.ember-ui.sum'), icon: 'plus' },
+            { value: 'avg', label: this.intl.t('literal.ember-ui.average'), icon: 'chart-line' },
+            { value: 'min', label: this.intl.t('literal.ember-ui.minimum'), icon: 'arrow-down' },
+            { value: 'max', label: this.intl.t('literal.ember-ui.maximum'), icon: 'arrow-up' },
+            { value: 'group_concat', label: this.intl.t('literal.ember-ui.concatenate'), icon: 'link' },
         ];
     }
 
@@ -54,7 +56,7 @@ export default class QueryBuilderGroupByComponent extends Component {
         const fn = this.selectedAggregateFn.value;
 
         if (fn === 'count') {
-            return [{ name: '*', label: 'All Records', type: 'count', full: '*' }, ...columnsToUse];
+            return [{ name: '*', label: this.intl.t('literal.ember-ui.all-records'), type: 'count', full: '*' }, ...columnsToUse];
         }
 
         if (fn === 'sum' || fn === 'avg') {
@@ -86,11 +88,11 @@ export default class QueryBuilderGroupByComponent extends Component {
      */
     get groupingMessage() {
         if (!this.args.selectedColumns?.length) {
-            return 'Select columns first to enable grouping';
+            return this.intl.t('literal.ember-ui.select-columns-first-to-enable-grouping');
         }
 
         if (!this.canGroup) {
-            return 'No non-aggregated columns available for grouping';
+            return this.intl.t('literal.ember-ui.no-non-aggregated-columns-available-for-grouping');
         }
 
         return null;
@@ -128,7 +130,7 @@ export default class QueryBuilderGroupByComponent extends Component {
         this.selectedAggregateFn = fn;
         // Optional UX: auto-select "*" when choosing COUNT
         if (fn?.value === 'count') {
-            this.selectedAggregateBy = { name: '*', label: 'All Records', type: 'count', full: '*' };
+            this.selectedAggregateBy = { name: '*', label: this.intl.t('literal.ember-ui.all-records'), type: 'count', full: '*' };
         } else {
             this.selectedAggregateBy = null;
         }

@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
+import { inject as service } from '@ember/service';
 /**
  * TemplateBuilderLayersPanelComponent
  *
@@ -20,6 +21,7 @@ import { action } from '@ember/object';
  * @argument {Function} onReorderElement - Called with (uuid, direction) — 'up' or 'down'
  */
 export default class TemplateBuilderLayersPanelComponent extends Component {
+    @service intl;
     @tracked renamingUuid = null;
     @tracked renameValue = '';
 
@@ -47,15 +49,15 @@ export default class TemplateBuilderLayersPanelComponent extends Component {
     elementLabel(element) {
         if (element.label) return element.label;
         const typeLabels = {
-            text: 'Text',
-            image: 'Image',
-            table: 'Table',
-            line: 'Line',
-            shape: 'Shape',
-            qr_code: 'QR Code',
-            barcode: 'Barcode',
+            text: this.intl.t('literal.ember-ui.text'),
+            image: this.intl.t('literal.ember-ui.image'),
+            table: this.intl.t('literal.ember-ui.table'),
+            line: this.intl.t('literal.ember-ui.line'),
+            shape: this.intl.t('literal.ember-ui.shape'),
+            qr_code: this.intl.t('literal.ember-ui.qr-code'),
+            barcode: this.intl.t('literal.ember-ui.barcode'),
         };
-        return typeLabels[element.type] ?? 'Element';
+        return typeLabels[element.type] ?? this.intl.t('literal.ember-ui.element');
     }
 
     @action

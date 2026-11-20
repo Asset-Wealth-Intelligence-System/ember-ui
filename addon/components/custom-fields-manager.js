@@ -118,7 +118,7 @@ export default class CustomFieldsManagerComponent extends Component {
         });
 
         this.modalsManager.show('modals/custom-field-group-form', {
-            title: 'New custom field group',
+            title: this.intl.t('literal.ember-ui.new-custom-field-group'),
             acceptButtonIcon: 'check',
             acceptButtonIconPrefix: 'fas',
             declineButtonIcon: 'times',
@@ -143,7 +143,7 @@ export default class CustomFieldsManagerComponent extends Component {
 
     @action createCustomField(subject, group) {
         const customField = this.store.createRecord('custom-field', {
-            label: 'Untitled Field',
+            label: this.intl.t('literal.ember-ui.untitled-field'),
             category_uuid: group.id,
             subject_uuid: this.currentUser.companyId,
             subject_type: 'company',
@@ -158,9 +158,9 @@ export default class CustomFieldsManagerComponent extends Component {
 
     @action deleteGroup(group, subject) {
         this.modalsManager.confirm({
-            title: 'Delete this field group?',
-            body: 'Once this field group is deleted it will not be recoverable and you will lose all custom fields inside.',
-            acceptButtonText: 'Delete',
+            title: this.intl.t('literal.ember-ui.delete-this-field-group'),
+            body: this.intl.t('literal.ember-ui.once-this-field-group-is-deleted-it-will-not-be-c32b6'),
+            acceptButtonText: this.intl.t('literal.ember-ui.delete'),
             acceptButtonType: 'danger',
             confirm: async (modal) => {
                 modal.startLoading();
@@ -183,9 +183,9 @@ export default class CustomFieldsManagerComponent extends Component {
 
     @action deleteCustomField(customField, subject) {
         this.modalsManager.confirm({
-            title: 'Delete this custom field?',
-            body: 'Once this custom field is deleted it will not be recoverable and you will lose all data assosciated.',
-            acceptButtonText: 'Delete',
+            title: this.intl.t('literal.ember-ui.delete-this-custom-field'),
+            body: this.intl.t('literal.ember-ui.once-this-custom-field-is-deleted-it-will-not-be-35d93'),
+            acceptButtonText: this.intl.t('literal.ember-ui.delete'),
             confirm: async (modal) => {
                 modal.startLoading();
 

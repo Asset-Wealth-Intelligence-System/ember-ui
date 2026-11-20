@@ -14,6 +14,7 @@ import config from 'ember-get-config';
  * @extends {Component}
  */
 export default class LayoutHeaderComponent extends Component {
+    @service intl;
     @service store;
     @service router;
     @service hostRouter;
@@ -81,19 +82,19 @@ export default class LayoutHeaderComponent extends Component {
             {
                 id: 'console-home',
                 route: 'console.home',
-                text: 'Home',
+                text: this.intl.t('literal.ember-ui.home'),
                 icon: 'house',
             },
             {
                 id: 'organization-settings',
                 route: 'console.settings.index',
-                text: 'Organization settings',
+                text: this.intl.t('literal.ember-ui.organization-settings'),
                 icon: 'gear',
             },
             {
                 id: 'create-or-join-organizations',
                 href: 'javascript:;',
-                text: 'Create or join organizations',
+                text: this.intl.t('literal.ember-ui.create-or-join-organizations'),
                 action: 'createOrJoinOrg',
                 icon: 'building',
             },
@@ -104,7 +105,7 @@ export default class LayoutHeaderComponent extends Component {
             staticMenuItems.pushObject({
                 id: 'explore-extensions',
                 route: 'console.extensions',
-                text: 'Explore extensions',
+                text: this.intl.t('literal.ember-ui.explore-extensions'),
                 icon: 'puzzle-piece',
             });
         }
@@ -149,7 +150,7 @@ export default class LayoutHeaderComponent extends Component {
                 },
                 {
                     route: 'console.admin',
-                    text: 'Admin',
+                    text: this.intl.t('literal.ember-ui.admin'),
                     icon: 'toolbox',
                 },
             ]);
@@ -162,7 +163,7 @@ export default class LayoutHeaderComponent extends Component {
             },
             {
                 href: 'javascript:;',
-                text: 'Logout',
+                text: this.intl.t('literal.ember-ui.logout'),
                 action: 'invalidateSession',
                 icon: 'person-running',
             },
@@ -191,13 +192,13 @@ export default class LayoutHeaderComponent extends Component {
                 id: 'view-profile-user-nav-item',
                 wrapperClass: 'view-profile-user-nav-item',
                 route: 'console.account.index',
-                text: 'View Profile',
+                text: this.intl.t('literal.ember-ui.view-profile'),
             },
             {
                 id: 'show-keyboard-shortcuts-user-nav-item',
                 wrapperClass: 'show-keyboard-shortcuts-user-nav-item',
                 href: 'javascript:;',
-                text: 'Show keyboard shortcuts',
+                text: this.intl.t('literal.ember-ui.show-keyboard-shortcuts'),
                 disabled: true,
                 action: 'showKeyboardShortcuts',
             },
@@ -208,7 +209,7 @@ export default class LayoutHeaderComponent extends Component {
                 id: 'changelog-user-nav-item',
                 wrapperClass: 'changelog-user-nav-item',
                 href: 'javascript:;',
-                text: 'Changelog',
+                text: this.intl.t('literal.ember-ui.changelog'),
                 action: 'viewChangelog',
             },
         ];
@@ -219,7 +220,7 @@ export default class LayoutHeaderComponent extends Component {
                 id: 'developers-user-nav-item',
                 wrapperClass: 'developers-user-nav-item',
                 route: 'console.developers',
-                text: 'Developers',
+                text: this.intl.t('literal.ember-ui.developers'),
             });
         }
 
@@ -229,7 +230,7 @@ export default class LayoutHeaderComponent extends Component {
                 id: 'discord',
                 href: 'https://discord.gg/MJQgxHwN',
                 target: '_discord',
-                text: 'Join Discord Community',
+                text: this.intl.t('literal.ember-ui.join-discord-community'),
                 icon: 'arrow-up-right-from-square',
             },
             {
@@ -237,15 +238,15 @@ export default class LayoutHeaderComponent extends Component {
                 wrapperClass: 'support-user-nav-item',
                 href: 'https://github.com/fleetbase/fleetbase/issues',
                 target: '_support',
-                text: 'Help & Support',
+                text: this.intl.t('literal.ember-ui.help-support'),
                 icon: 'arrow-up-right-from-square',
             },
             {
                 id: 'docs-user-nav-item',
                 wrapperClass: 'docs-user-nav-item',
-                text: 'Documentation',
+                text: this.intl.t('literal.ember-ui.documentation'),
                 icon: 'book-open',
-                onClick: () => this.docsPanel.open('https://www.fleetbase.io/docs', { title: 'Fleetbase Documentation', source: 'user-menu' }),
+                onClick: () => this.docsPanel.open('https://www.fleetbase.io/docs', { title: this.intl.t('literal.ember-ui.fleetbase-documentation'), source: 'user-menu' }),
             },
         ];
 
@@ -279,7 +280,7 @@ export default class LayoutHeaderComponent extends Component {
             },
             {
                 href: 'javascript:;',
-                text: 'Logout',
+                text: this.intl.t('literal.ember-ui.logout'),
                 action: 'invalidateSession',
                 icon: 'person-running',
             },

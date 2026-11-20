@@ -6,38 +6,26 @@
             class="direction-button {{@directionButtonClass}} {{if this.cannotStepBackward 'disabled'}}"
             disabled={{this.cannotStepBackward}}
             tabindex="-1"
-            aria-label="Previous"
+            aria-label={{t "literal.ember-ui.previous"}}
             {{on "click" (fn this.incrementPage -1)}}
         >
-            Previous
+            {{t "literal.ember-ui.previous"}}
         </a>
         <a
             href="#"
             id="fleetbase-pagination-next-button"
             class="ml-3 direction-button {{@directionButtonClass}} {{if this.cannotStepForward 'disabled'}}"
             disabled={{this.cannotStepForward}}
-            aria-label="Next"
+            aria-label={{t "literal.ember-ui.next"}}
             {{on "click" (fn this.incrementPage 1)}}
         >
-            Next
+            {{t "literal.ember-ui.next"}}
         </a>
     </div>
     <div class="fleetbase-pagination-meta-info-wrapper hidden sm:flex-1 sm:flex sm:items-center sm:justify-between {{@metaInfoWrapperClass}}">
         <div class={{concat "fleetbase-pagination-meta-info" " " @metaInfoClass}}>
             <p class="fleetbase-pagination-meta-info-content text-sm leading-5 text-gray-700 pagination-showing {{@metaInfoParagraph}}">
-                Showing
-                <span class="font-medium">
-                    {{this.from}}
-                </span>
-                to
-                <span class="font-medium">
-                    {{this.to}}
-                </span>
-                of
-                <span class="font-medium">
-                    {{this.totalResults}}
-                </span>
-                results
+                {{t "literal.ember-ui.showing-from-to-of-results" from=this.from to=this.to total=this.totalResults htmlSafe=true}}
             </p>
         </div>
 

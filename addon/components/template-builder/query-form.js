@@ -23,6 +23,7 @@ import { inject as service } from '@ember/service';
  * @argument {Function} onClose        - Called when the modal should close
  */
 export default class TemplateBuilderQueryFormComponent extends Component {
+    @service intl;
     @service('template-builder') templateBuilderService;
 
     // ── Scalar form fields ──────────────────────────────────────────────────
@@ -103,15 +104,15 @@ export default class TemplateBuilderQueryFormComponent extends Component {
             return serviceTypes;
         }
         return [
-            { value: 'Fleetbase\\FleetOps\\Models\\Order', label: 'Order', icon: 'box' },
-            { value: 'Fleetbase\\FleetOps\\Models\\Driver', label: 'Driver', icon: 'id-card' },
-            { value: 'Fleetbase\\FleetOps\\Models\\Place', label: 'Place', icon: 'location-dot' },
-            { value: 'Fleetbase\\FleetOps\\Models\\Vendor', label: 'Vendor', icon: 'building' },
-            { value: 'Fleetbase\\FleetOps\\Models\\Contact', label: 'Contact', icon: 'address-book' },
-            { value: 'Fleetbase\\FleetOps\\Models\\Issue', label: 'Issue', icon: 'triangle-exclamation' },
-            { value: 'Fleetbase\\FleetOps\\Models\\Vehicle', label: 'Vehicle', icon: 'truck' },
-            { value: 'Fleetbase\\FleetOps\\Models\\FuelReport', label: 'Fuel Report', icon: 'gas-pump' },
-            { value: 'Fleetbase\\FleetOps\\Models\\PurchaseRate', label: 'Purchase Rate', icon: 'receipt' },
+            { value: 'Fleetbase\\FleetOps\\Models\\Order', label: this.intl.t('literal.ember-ui.order'), icon: 'box' },
+            { value: 'Fleetbase\\FleetOps\\Models\\Driver', label: this.intl.t('literal.ember-ui.driver'), icon: 'id-card' },
+            { value: 'Fleetbase\\FleetOps\\Models\\Place', label: this.intl.t('literal.ember-ui.place'), icon: 'location-dot' },
+            { value: 'Fleetbase\\FleetOps\\Models\\Vendor', label: this.intl.t('literal.ember-ui.vendor'), icon: 'building' },
+            { value: 'Fleetbase\\FleetOps\\Models\\Contact', label: this.intl.t('literal.ember-ui.contact'), icon: 'address-book' },
+            { value: 'Fleetbase\\FleetOps\\Models\\Issue', label: this.intl.t('literal.ember-ui.issue'), icon: 'triangle-exclamation' },
+            { value: 'Fleetbase\\FleetOps\\Models\\Vehicle', label: this.intl.t('literal.ember-ui.vehicle'), icon: 'truck' },
+            { value: 'Fleetbase\\FleetOps\\Models\\FuelReport', label: this.intl.t('literal.ember-ui.fuel-report'), icon: 'gas-pump' },
+            { value: 'Fleetbase\\FleetOps\\Models\\PurchaseRate', label: this.intl.t('literal.ember-ui.purchase-rate'), icon: 'receipt' },
         ];
     }
 
@@ -135,18 +136,18 @@ export default class TemplateBuilderQueryFormComponent extends Component {
 
     get conditionOperators() {
         return [
-            { value: '=', label: '= equals' },
-            { value: '!=', label: '≠ not equals' },
-            { value: '>', label: '> greater than' },
-            { value: '>=', label: '≥ greater or equal' },
-            { value: '<', label: '< less than' },
-            { value: '<=', label: '≤ less or equal' },
-            { value: 'like', label: '~ contains' },
-            { value: 'not like', label: '!~ not contains' },
-            { value: 'in', label: 'in list' },
-            { value: 'not in', label: 'not in list' },
-            { value: 'null', label: 'is null' },
-            { value: 'not null', label: 'is not null' },
+            { value: '=', label: this.intl.t('literal.ember-ui.equals') },
+            { value: '!=', label: this.intl.t('literal.ember-ui.not-equals-aba81') },
+            { value: '>', label: this.intl.t('literal.ember-ui.greater-than-b8972') },
+            { value: '>=', label: this.intl.t('literal.ember-ui.greater-or-equal') },
+            { value: '<', label: this.intl.t('literal.ember-ui.less-than-58e55') },
+            { value: '<=', label: this.intl.t('literal.ember-ui.less-or-equal') },
+            { value: 'like', label: this.intl.t('literal.ember-ui.contains') },
+            { value: 'not like', label: this.intl.t('literal.ember-ui.not-contains') },
+            { value: 'in', label: this.intl.t('literal.ember-ui.in-list') },
+            { value: 'not in', label: this.intl.t('literal.ember-ui.not-in-list') },
+            { value: 'null', label: this.intl.t('literal.ember-ui.is-null') },
+            { value: 'not null', label: this.intl.t('literal.ember-ui.is-not-null') },
         ];
     }
 
@@ -263,11 +264,11 @@ export default class TemplateBuilderQueryFormComponent extends Component {
         this.errorMessage = null;
 
         if (!this.label?.trim()) {
-            this.errorMessage = 'Label is required.';
+            this.errorMessage = this.intl.t('literal.ember-ui.label-is-required');
             return;
         }
         if (!this.modelType) {
-            this.errorMessage = 'Please select a resource type.';
+            this.errorMessage = this.intl.t('literal.ember-ui.please-select-a-resource-type');
             return;
         }
 

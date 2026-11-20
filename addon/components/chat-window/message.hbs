@@ -27,7 +27,7 @@
                             {{receipt.participant_name}}
                         </div>
                         <Attach::Tooltip @class="clean" @animation="scale" @placement="top">
-                            <InputInfo @text={{concat "Read at " receipt.readAt}} class="xs" />
+                            <InputInfo @text={{t "literal.ember-ui.read-at" time=receipt.readAt}} class="xs" />
                         </Attach::Tooltip>
                     </div>
                 {{/each}}

@@ -3,7 +3,7 @@
         <div class="flex items-center justify-center p-8">
             <div class="flex items-center space-x-3">
                 <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                <span class="text-sm text-gray-600 dark:text-gray-400">Executing query...</span>
+                <span class="text-sm text-gray-600 dark:text-gray-400">{{t "literal.ember-ui.executing-query"}}</span>
             </div>
         </div>
     {{else if @error}}
@@ -19,8 +19,8 @@
         <div class="flex items-center justify-center p-8">
             <div class="text-center">
                 <FaIcon @icon="table" class="text-gray-400 text-3xl mb-2" />
-                <p class="text-sm text-gray-500 dark:text-gray-400">No results found</p>
-                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Try adjusting your query filters</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">{{t "literal.ember-ui.no-results-found"}}</p>
+                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">{{t "literal.ember-ui.try-adjusting-your-query-filters"}}</p>
             </div>
         </div>
     {{else}}

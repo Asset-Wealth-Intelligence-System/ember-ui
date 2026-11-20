@@ -3,7 +3,9 @@ import { tracked } from '@glimmer/tracking';
 import { computed, action } from '@ember/object';
 import { equal } from '@ember/object/computed';
 
+import { inject as service } from '@ember/service';
 export default class UnitInputComponent extends Component {
+    @service intl;
     /**
      * Units of weight
      *
@@ -45,7 +47,8 @@ export default class UnitInputComponent extends Component {
      *
      * @memberof UnitInputComponent
      */
-    unitsOfLength = [
+    get unitsOfLength() {
+        return [
         {
             name: 'Meter',
             value: 'm',
@@ -79,21 +82,23 @@ export default class UnitInputComponent extends Component {
             value: 'yd',
         },
         {
-            name: 'Astonomical Unit',
+            name: this.intl.t('literal.ember-ui.astonomical-unit'),
             value: 'AE',
         },
         {
-            name: 'Light Year',
+            name: this.intl.t('literal.ember-ui.light-year'),
             value: 'lj',
         },
     ];
+    }
 
     /**
      * Units of volume
      *
      * @memberof UnitInputComponent
      */
-    unitsOfVolume = [
+    get unitsOfVolume() {
+        return [
         {
             name: 'Milliliter',
             value: 'mL',
@@ -115,18 +120,19 @@ export default class UnitInputComponent extends Component {
             value: 'L',
         },
         {
-            name: 'Gallon (US)',
+            name: this.intl.t('literal.ember-ui.gallon-us'),
             value: 'gal',
         },
         {
-            name: 'Pint (US)',
+            name: this.intl.t('literal.ember-ui.pint-us'),
             value: 'pt',
         },
         {
-            name: 'Quart (US)',
+            name: this.intl.t('literal.ember-ui.quart-us'),
             value: 'qt',
         },
     ];
+    }
 
     /**
      * The placeholder
@@ -141,7 +147,7 @@ export default class UnitInputComponent extends Component {
             return placeholder;
         }
 
-        return `Enter ${this.unitName}`;
+        return this.intl.t('literal.ember-ui.enter', { unitName: this.unitName });
     }
 
     /**

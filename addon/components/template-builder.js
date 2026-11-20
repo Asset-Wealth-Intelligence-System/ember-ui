@@ -60,6 +60,7 @@ import { next } from '@ember/runloop';
  * @argument {String}   [closeLabel]    - Text label beside the close icon (default: none — icon only)
  */
 export default class TemplateBuilderComponent extends Component {
+    @service intl;
     @service fetch;
     @service notifications;
 
@@ -160,7 +161,7 @@ export default class TemplateBuilderComponent extends Component {
 
         const queriesSchema = {
             namespace: '__queries__',
-            label: 'Queries',
+            label: this.intl.t('literal.ember-ui.queries'),
             icon: 'database',
             variables: this.queries.map((q) => ({
                 path: q.variable_name,
@@ -554,7 +555,7 @@ export default class TemplateBuilderComponent extends Component {
 
     _defaultsForType(type) {
         const map = {
-            text: { width: 200, height: 40, props: { content: 'Text', font_size: 14, font_family: 'Inter, sans-serif', font_weight: '400', color: '#000000', text_align: 'left' } },
+            text: { width: 200, height: 40, props: { content: this.intl.t('literal.ember-ui.text'), font_size: 14, font_family: 'Inter, sans-serif', font_weight: '400', color: '#000000', text_align: 'left' } },
             image: { width: 150, height: 100, props: { src: '', alt: '', object_fit: 'cover' } },
             table: { width: 400, height: 200, props: { columns: [], rows: [], border_color: '#e5e7eb', header_background: '#f9fafb', header_color: '#111827', cell_padding: 6 } },
             line: { width: 200, height: 2, props: { color: '#000000', line_width: 1, line_style: 'solid' } },

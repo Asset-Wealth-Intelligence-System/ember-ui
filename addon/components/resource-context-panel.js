@@ -15,6 +15,7 @@ import titleize from 'ember-cli-string-helpers/utils/titleize';
  * @extends Component
  */
 export default class ResourceContextPanelComponent extends Component {
+    @service intl;
     @service resourceContextPanel;
     @service notifications;
 
@@ -109,11 +110,11 @@ export default class ResourceContextPanelComponent extends Component {
 
     getResourceName(resource) {
         let resourceName = resource?.name ?? resource?.displayName ?? resource?.display_name;
-        return resourceName ?? getModelName(resource) ?? 'Resource';
+        return resourceName ?? getModelName(resource) ?? this.intl.t('literal.ember-ui.resource');
     }
 
     getResourceType(resource) {
-        return titleize(getModelName(resource)) ?? 'Resource';
+        return titleize(getModelName(resource)) ?? this.intl.t('literal.ember-ui.resource');
     }
 
     /**
@@ -173,7 +174,7 @@ export default class ResourceContextPanelComponent extends Component {
 
         try {
             const result = yield resource.save();
-            this.notifications.success(`${this.getResourceName(resource)} ${isNew ? 'created' : 'updated'} successfully.`);
+            this.notifications.success(this.intl.t('literal.ember-ui.successfully', { ResourceName: this.getResourceName(resource), value: isNew ? 'created' : 'updated' }));
 
             if (overlayId) {
                 this.resourceContextPanel.close(overlayId);

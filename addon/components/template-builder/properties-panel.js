@@ -18,6 +18,7 @@ import { inject as service } from '@ember/service';
  * @argument {Function} onOpenVariablePicker - Called to open the variable picker modal
  */
 export default class TemplateBuilderPropertiesPanelComponent extends Component {
+    @service intl;
     @service fetch;
     @service notifications;
 
@@ -124,13 +125,13 @@ export default class TemplateBuilderPropertiesPanelComponent extends Component {
 
     get fontWeightOptions() {
         return [
-            { value: '300', label: 'Light' },
-            { value: '400', label: 'Regular' },
-            { value: '500', label: 'Medium' },
-            { value: '600', label: 'Semi Bold' },
-            { value: '700', label: 'Bold' },
-            { value: '800', label: 'Extra Bold' },
-            { value: '900', label: 'Black' },
+            { value: '300', label: this.intl.t('literal.ember-ui.light') },
+            { value: '400', label: this.intl.t('literal.ember-ui.regular') },
+            { value: '500', label: this.intl.t('literal.ember-ui.medium') },
+            { value: '600', label: this.intl.t('literal.ember-ui.semi-bold') },
+            { value: '700', label: this.intl.t('literal.ember-ui.bold') },
+            { value: '800', label: this.intl.t('literal.ember-ui.extra-bold') },
+            { value: '900', label: this.intl.t('literal.ember-ui.black') },
         ];
     }
 
@@ -158,18 +159,18 @@ export default class TemplateBuilderPropertiesPanelComponent extends Component {
 
     get lineStyleOptions() {
         return [
-            { value: 'solid', label: 'Solid' },
-            { value: 'dashed', label: 'Dashed' },
-            { value: 'dotted', label: 'Dotted' },
+            { value: 'solid', label: this.intl.t('literal.ember-ui.solid') },
+            { value: 'dashed', label: this.intl.t('literal.ember-ui.dashed') },
+            { value: 'dotted', label: this.intl.t('literal.ember-ui.dotted') },
         ];
     }
 
     get objectFitOptions() {
         return [
-            { value: 'cover', label: 'Cover' },
-            { value: 'contain', label: 'Contain' },
-            { value: 'fill', label: 'Fill' },
-            { value: 'none', label: 'None' },
+            { value: 'cover', label: this.intl.t('literal.ember-ui.cover') },
+            { value: 'contain', label: this.intl.t('literal.ember-ui.contain') },
+            { value: 'fill', label: this.intl.t('literal.ember-ui.fill') },
+            { value: 'none', label: this.intl.t('literal.ember-ui.none') },
         ];
     }
 
@@ -388,26 +389,26 @@ export default class TemplateBuilderPropertiesPanelComponent extends Component {
 
     get shapeOptions() {
         return [
-            { value: 'rectangle', label: 'Rectangle' },
-            { value: 'circle', label: 'Circle' },
+            { value: 'rectangle', label: this.intl.t('literal.ember-ui.rectangle') },
+            { value: 'circle', label: this.intl.t('literal.ember-ui.circle') },
         ];
     }
 
     get paperSizeOptions() {
         return [
-            { value: 'A4', label: 'A4 (210 × 297 mm)' },
-            { value: 'A3', label: 'A3 (297 × 420 mm)' },
-            { value: 'A5', label: 'A5 (148 × 210 mm)' },
-            { value: 'Letter', label: 'Letter (216 × 279 mm)' },
-            { value: 'Legal', label: 'Legal (216 × 356 mm)' },
-            { value: 'custom', label: 'Custom' },
+            { value: 'A4', label: this.intl.t('literal.ember-ui.a4-210-297-mm') },
+            { value: 'A3', label: this.intl.t('literal.ember-ui.a3-297-420-mm') },
+            { value: 'A5', label: this.intl.t('literal.ember-ui.a5-148-210-mm') },
+            { value: 'Letter', label: this.intl.t('literal.ember-ui.letter-216-279-mm') },
+            { value: 'Legal', label: this.intl.t('literal.ember-ui.legal-216-356-mm') },
+            { value: 'custom', label: this.intl.t('literal.ember-ui.custom') },
         ];
     }
 
     get orientationOptions() {
         return [
-            { value: 'portrait', label: 'Portrait' },
-            { value: 'landscape', label: 'Landscape' },
+            { value: 'portrait', label: this.intl.t('literal.ember-ui.portrait') },
+            { value: 'landscape', label: this.intl.t('literal.ember-ui.landscape') },
         ];
     }
 }

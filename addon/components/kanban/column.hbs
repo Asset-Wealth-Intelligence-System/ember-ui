@@ -68,7 +68,7 @@
 
         {{#unless this.cards.length}}
             <div class="kanban-column-empty">
-                <p class="kanban-empty-text">No {{pluralize (or @subject "card")}} yet</p>
+                <p class="kanban-empty-text">{{t "literal.ember-ui.no-subject-yet" subject=(pluralize (or @subject "card"))}}</p>
             </div>
         {{/unless}}
     </div>
@@ -76,7 +76,7 @@
     {{#unless @readonly}}
         <div class="kanban-column-footer">
             <button type="button" class="kanban-add-card-button" {{on "click" this.onCreateCard}} disabled={{@disabled}}>
-                + Add a {{or @subject "card"}}
+                {{t "literal.ember-ui.add-a"}} {{or @subject "card"}}
             </button>
         </div>
     {{/unless}}

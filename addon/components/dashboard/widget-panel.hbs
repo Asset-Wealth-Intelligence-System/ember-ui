@@ -27,7 +27,7 @@
                 {{#if this.searchQuery}}
                     <button type="button"
                             class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-                            aria-label="Clear search"
+                            aria-label={{t "literal.ember-ui.clear-search"}}
                             {{on "click" this.clearSearch}}>
                         <FaIcon @icon="times-circle" />
                     </button>

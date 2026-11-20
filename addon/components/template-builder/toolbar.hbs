@@ -8,7 +8,7 @@
             <button
                 type="button"
                 class="tb-toolbar-btn flex items-center space-x-1 px-2 py-1.5 rounded text-xs font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors mr-1"
-                title={{or @closeLabel "Close"}}
+                title={{or @closeLabel (t "literal.ember-ui.close")}}
                 {{on "click" this.close}}
             >
                 <FaIcon @icon={{or @closeIcon "chevron-left"}} class="w-3.5 h-3.5" />
@@ -37,7 +37,7 @@
         <button
             type="button"
             class="tb-toolbar-btn p-1.5 rounded text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            title="Zoom out"
+            title={{t "literal.ember-ui.zoom-out"}}
             {{on "click" this.zoomOut}}
         >
             <FaIcon @icon="magnifying-glass-minus" class="w-3.5 h-3.5" />
@@ -45,7 +45,7 @@
         <button
             type="button"
             class="tb-toolbar-btn px-2 py-1 rounded text-xs font-mono text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors min-w-12 text-center"
-            title="Reset zoom"
+            title={{t "literal.ember-ui.reset-zoom"}}
             {{on "click" this.zoomReset}}
         >
             {{this.zoomPercent}}
@@ -53,7 +53,7 @@
         <button
             type="button"
             class="tb-toolbar-btn p-1.5 rounded text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            title="Zoom in"
+            title={{t "literal.ember-ui.zoom-in"}}
             {{on "click" this.zoomIn}}
         >
             <FaIcon @icon="magnifying-glass-plus" class="w-3.5 h-3.5" />
@@ -70,7 +70,7 @@
                 {{if @selectedElement
                     'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                     'text-gray-400 dark:text-gray-600'}}"
-            title="Rotate left 90°"
+            title={{t "literal.ember-ui.rotate-left-90"}}
             disabled={{not @selectedElement}}
             {{on "click" this.rotateLeft}}
         >
@@ -82,7 +82,7 @@
                 {{if @selectedElement
                     'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                     'text-gray-400 dark:text-gray-600'}}"
-            title="Rotate right 90°"
+            title={{t "literal.ember-ui.rotate-right-90"}}
             disabled={{not @selectedElement}}
             {{on "click" this.rotateRight}}
         >
@@ -94,7 +94,7 @@
         <button
             type="button"
             class="tb-toolbar-btn p-1.5 rounded text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            title="Undo"
+            title={{t "literal.ember-ui.undo"}}
             disabled={{not @canUndo}}
             {{on "click" this.undo}}
         >
@@ -103,7 +103,7 @@
         <button
             type="button"
             class="tb-toolbar-btn p-1.5 rounded text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            title="Redo"
+            title={{t "literal.ember-ui.redo"}}
             disabled={{not @canRedo}}
             {{on "click" this.redo}}
         >
@@ -115,17 +115,17 @@
         <button
             type="button"
             class="tb-toolbar-btn flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-            title="Preview template"
+            title={{t "literal.ember-ui.preview-template"}}
             {{on "click" this.preview}}
         >
             <FaIcon @icon="eye" class="w-3.5 h-3.5" />
-            <span>Preview</span>
+            <span>{{t "literal.ember-ui.preview"}}</span>
         </button>
 
         <Button
             @type="primary"
             @icon="floppy-disk"
-            @text="Save"
+            @text={{t "literal.ember-ui.save"}}
             @size="xs"
             @isLoading={{@isSaving}}
             @onClick={{this.save}}

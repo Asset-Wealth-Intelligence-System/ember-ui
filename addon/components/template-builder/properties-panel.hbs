@@ -10,13 +10,13 @@
         <div class="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-900 z-10">
             <div class="flex items-center space-x-2">
                 <FaIcon @icon={{this.elementType}} class="w-3.5 h-3.5 text-blue-500" />
-                <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 capitalize">{{this.elementType}} Properties</span>
+                <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 capitalize">{{this.elementType}} {{t "literal.ember-ui.properties"}}</span>
             </div>
         </div>
 
         {{! POSITION SECTION }}
         <TemplateBuilder::PropertiesPanel::Section
-            @title="Position"
+            @title={{t "literal.ember-ui.position"}}
             @icon="arrows-up-down-left-right"
             @isOpen={{this.isSectionOpen "position"}}
             @onToggle={{fn this.toggleSection "position"}}
@@ -28,13 +28,13 @@
                 <TemplateBuilder::PropertiesPanel::Field @label="Y">
                     <input type="number" class="tb-input" value={{this.element.y}} {{on "change" (fn this.updateNumericProp "y")}} />
                 </TemplateBuilder::PropertiesPanel::Field>
-                <TemplateBuilder::PropertiesPanel::Field @label="Rotation">
+                <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.rotation"}}>
                     <input type="number" class="tb-input" value={{this.element.rotation}} min="-360" max="360" {{on "change" (fn this.updateNumericProp "rotation")}} />
                 </TemplateBuilder::PropertiesPanel::Field>
-                <TemplateBuilder::PropertiesPanel::Field @label="Z-Index">
+                <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.z-index"}}>
                     <input type="number" class="tb-input" value={{this.element.z_index}} min="1" {{on "change" (fn this.updateNumericProp "z_index")}} />
                 </TemplateBuilder::PropertiesPanel::Field>
-                <TemplateBuilder::PropertiesPanel::Field @label="Opacity" @span="2">
+                <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.opacity"}} @span="2">
                     <input type="range" class="w-full" value={{this.element.opacity}} min="0" max="1" step="0.05" {{on "input" (fn this.updateNumericProp "opacity")}} />
                 </TemplateBuilder::PropertiesPanel::Field>
             </div>
@@ -42,16 +42,16 @@
 
         {{! SIZE SECTION }}
         <TemplateBuilder::PropertiesPanel::Section
-            @title="Size"
+            @title={{t "literal.ember-ui.size"}}
             @icon="ruler-combined"
             @isOpen={{this.isSectionOpen "size"}}
             @onToggle={{fn this.toggleSection "size"}}
         >
             <div class="grid grid-cols-2 gap-2">
-                <TemplateBuilder::PropertiesPanel::Field @label="Width">
+                <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.width"}}>
                     <input type="number" class="tb-input" value={{this.element.width}} min="1" {{on "change" (fn this.updateNumericProp "width")}} />
                 </TemplateBuilder::PropertiesPanel::Field>
-                <TemplateBuilder::PropertiesPanel::Field @label="Height">
+                <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.height"}}>
                     <input type="number" class="tb-input" value={{this.element.height}} min="1" {{on "change" (fn this.updateNumericProp "height")}} />
                 </TemplateBuilder::PropertiesPanel::Field>
             </div>
@@ -60,7 +60,7 @@
         {{! TEXT CONTENT SECTION (text elements only) }}
         {{#if this.hasTextContent}}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Content"
+                @title={{t "literal.ember-ui.content"}}
                 @icon="align-left"
                 @isOpen={{this.isSectionOpen "content"}}
                 @onToggle={{fn this.toggleSection "content"}}
@@ -79,7 +79,7 @@
                         {{on "click" (fn this.openVariablePicker "content")}}
                     >
                         <FaIcon @icon="code" class="w-3 h-3" />
-                        <span>Insert variable or formula</span>
+                        <span>{{t "literal.ember-ui.insert-variable-or-formula"}}</span>
                     </button>
                 </div>
             </TemplateBuilder::PropertiesPanel::Section>
@@ -88,7 +88,7 @@
         {{! IMAGE SECTION }}
         {{#if this.isImage}}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Image"
+                @title={{t "literal.ember-ui.image"}}
                 @icon="image"
                 @isOpen={{this.isSectionOpen "image"}}
                 @onToggle={{fn this.toggleSection "image"}}
@@ -96,7 +96,7 @@
                 <div class="space-y-2">
 
                     {{! Source — upload or variable token }}
-                    <TemplateBuilder::PropertiesPanel::Field @label="Image Source">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.image-source"}}>
                         {{#if this.imageIsVariable}}
                             {{! Variable token display }}
                             <div class="flex items-center space-x-1">
@@ -104,10 +104,10 @@
                                     <FaIcon @icon="code" class="w-3 h-3 text-blue-500 shrink-0" />
                                     <span class="text-xs text-blue-700 dark:text-blue-300 truncate font-mono">{{this.element.src}}</span>
                                 </div>
-                                <button type="button" class="tb-icon-btn" title="Change variable" {{on "click" (fn this.openVariablePicker "src")}}>
+                                <button type="button" class="tb-icon-btn" title={{t "literal.ember-ui.change-variable"}} {{on "click" (fn this.openVariablePicker "src")}}>
                                     <FaIcon @icon="pen" class="w-3 h-3" />
                                 </button>
-                                <button type="button" class="tb-icon-btn" title="Clear" {{on "click" this.clearImageSrc}}>
+                                <button type="button" class="tb-icon-btn" title={{t "literal.ember-ui.clear"}} {{on "click" this.clearImageSrc}}>
                                     <FaIcon @icon="xmark" class="w-3 h-3" />
                                 </button>
                             </div>
@@ -116,7 +116,7 @@
                             <div class="flex items-center space-x-1">
                                 <div class="flex-1 flex items-center space-x-1.5 px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 min-w-0">
                                     {{#if this.isUploadingImage}}
-                                        <span class="text-xs text-gray-500 dark:text-gray-400">Uploading...</span>
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">{{t "literal.ember-ui.uploading"}}</span>
                                     {{else}}
                                         <FaIcon @icon="image" class="w-3 h-3 text-gray-400 shrink-0" />
                                         <span class="text-xs text-gray-700 dark:text-gray-300 truncate">{{this.uploadedImageFilename}}</span>
@@ -127,11 +127,11 @@
                                     @accept="image/*"
                                     @onFileAdded={{this.onImageFileAdded}}
                                 >
-                                    <button type="button" class="tb-icon-btn" title="Replace image">
+                                    <button type="button" class="tb-icon-btn" title={{t "literal.ember-ui.replace-image"}}>
                                         <FaIcon @icon="arrow-up-from-bracket" class="w-3 h-3" />
                                     </button>
                                 </FileUpload>
-                                <button type="button" class="tb-icon-btn" title="Clear" {{on "click" this.clearImageSrc}}>
+                                <button type="button" class="tb-icon-btn" title={{t "literal.ember-ui.clear"}} {{on "click" this.clearImageSrc}}>
                                     <FaIcon @icon="xmark" class="w-3 h-3" />
                                 </button>
                             </div>
@@ -145,11 +145,11 @@
                                 >
                                     <div class="flex items-center justify-center w-full px-3 py-3 rounded border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 cursor-pointer transition-colors group">
                                         {{#if this.isUploadingImage}}
-                                            <span class="text-xs text-gray-500 dark:text-gray-400">Uploading...</span>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">{{t "literal.ember-ui.uploading"}}</span>
                                         {{else}}
                                             <div class="flex flex-col items-center space-y-1">
                                                 <FaIcon @icon="arrow-up-from-bracket" class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
-                                                <span class="text-xs text-gray-500 dark:text-gray-400 group-hover:text-blue-500 transition-colors">Click to upload image</span>
+                                                <span class="text-xs text-gray-500 dark:text-gray-400 group-hover:text-blue-500 transition-colors">{{t "literal.ember-ui.click-to-upload-image"}}</span>
                                             </div>
                                         {{/if}}
                                     </div>
@@ -165,23 +165,23 @@
                                     {{on "click" (fn this.openVariablePicker "src")}}
                                 >
                                     <FaIcon @icon="code" class="w-3 h-3" />
-                                    <span>Use variable (e.g. {company.logo})</span>
+                                    <span>{{t "literal.ember-ui.use-variable-e-g-company-logo"}}</span>
                                 </button>
                             </div>
                         {{/if}}
                     </TemplateBuilder::PropertiesPanel::Field>
 
-                    <TemplateBuilder::PropertiesPanel::Field @label="Alt Text">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.alt-text"}}>
                         <input type="text" class="tb-input" value={{this.element.alt}} {{on "change" (fn this.updateProp "alt")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Object Fit">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.object-fit"}}>
                         <select class="tb-input" {{on "change" (fn this.updateProp "object_fit")}}>
                             {{#each this.objectFitOptions as |opt|}}
                                 <option value={{opt.value}} selected={{eq this.element.object_fit opt.value}}>{{opt.label}}</option>
                             {{/each}}
                         </select>
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Border Radius">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.border-radius"}}>
                         <input type="number" class="tb-input" value={{this.element.border_radius}} min="0" {{on "change" (fn this.updateNumericProp "border_radius")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
                 </div>
@@ -192,7 +192,7 @@
         {{#if this.isTable}}
             {{! Columns }}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Columns"
+                @title={{t "literal.ember-ui.columns-168b8"}}
                 @icon="table-columns"
                 @isOpen={{this.isSectionOpen "table-columns"}}
                 @onToggle={{fn this.toggleSection "table-columns"}}
@@ -203,7 +203,7 @@
                             <input
                                 type="text"
                                 class="tb-input flex-1"
-                                placeholder="Column label"
+                                placeholder={{t "literal.ember-ui.column-label"}}
                                 value={{col.label}}
                                 {{on "change" (fn this.updateColumnLabel index)}}
                             />
@@ -217,7 +217,7 @@
                             <button
                                 type="button"
                                 class="tb-icon-btn text-red-400 hover:text-red-600"
-                                title="Remove column"
+                                title={{t "literal.ember-ui.remove-column"}}
                                 {{on "click" (fn this.removeColumn index)}}
                             >
                                 <FaIcon @icon="xmark" class="w-3 h-3" />
@@ -225,7 +225,7 @@
                         </div>
                     {{/each}}
                     {{#if (eq this.tableColumns.length 0)}}
-                        <p class="text-xs text-gray-400 dark:text-gray-500 text-center py-2">No columns defined. Add one below.</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500 text-center py-2">{{t "literal.ember-ui.no-columns-defined-add-one-below"}}</p>
                     {{/if}}
                     <button
                         type="button"
@@ -233,14 +233,14 @@
                         {{on "click" this.addColumn}}
                     >
                         <FaIcon @icon="plus" class="w-3 h-3" />
-                        <span>Add column</span>
+                        <span>{{t "literal.ember-ui.add-column"}}</span>
                     </button>
                 </div>
             </TemplateBuilder::PropertiesPanel::Section>
 
             {{! Data Source }}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Data Source"
+                @title={{t "literal.ember-ui.data-source"}}
                 @icon="database"
                 @isOpen={{this.isSectionOpen "table-data"}}
                 @onToggle={{fn this.toggleSection "table-data"}}
@@ -256,7 +256,7 @@
                                     'bg-blue-500 text-white'
                                     'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'}}"
                             {{on "click" (fn this.setTableDataMode "variable")}}
-                        >Variable</button>
+                        >{{t "literal.ember-ui.variable"}}</button>
                         <button
                             type="button"
                             class="flex-1 py-1 font-medium border-l border-gray-200 dark:border-gray-700 transition-colors
@@ -264,12 +264,12 @@
                                     'bg-blue-500 text-white'
                                     'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'}}"
                             {{on "click" (fn this.setTableDataMode "manual")}}
-                        >Manual</button>
+                        >{{t "literal.ember-ui.manual"}}</button>
                     </div>
 
                     {{! ── VARIABLE MODE ── }}
                     {{#if (eq this.tableDataMode "variable")}}
-                        <TemplateBuilder::PropertiesPanel::Field @label="Data Variable">
+                        <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.data-variable"}}>
                             <div class="flex space-x-1">
                                 <input
                                     type="text"
@@ -278,13 +278,13 @@
                                     value={{this.element.data_source}}
                                     {{on "change" (fn this.updateProp "data_source")}}
                                 />
-                                <button type="button" class="tb-icon-btn" title="Insert variable"
+                                <button type="button" class="tb-icon-btn" title={{t "literal.ember-ui.insert-variable"}}
                                     {{on "click" (fn this.openVariablePicker "data_source")}}>
                                     <FaIcon @icon="code" class="w-3 h-3" />
                                 </button>
                             </div>
                         </TemplateBuilder::PropertiesPanel::Field>
-                        <p class="text-xs text-gray-400 dark:text-gray-500">The variable must resolve to an array of objects. Each object's keys should match the column keys defined above.</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500">{{t "literal.ember-ui.the-variable-must-resolve-to-an-array-of-objects-5fb92"}}</p>
 
                     {{! ── MANUAL MODE ── }}
                     {{else}}
@@ -292,11 +292,11 @@
                             {{#each this.tableRows as |row rowIndex|}}
                                 <div class="rounded border border-gray-200 dark:border-gray-700 overflow-hidden">
                                     <div class="flex items-center justify-between px-2 py-1 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-                                        <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Row {{add rowIndex 1}}</span>
+                                        <span class="text-xs font-medium text-gray-600 dark:text-gray-400">{{t "literal.ember-ui.row"}} {{add rowIndex 1}}</span>
                                         <button
                                             type="button"
                                             class="text-red-400 hover:text-red-600"
-                                            title="Remove row"
+                                            title={{t "literal.ember-ui.remove-row"}}
                                             {{on "click" (fn this.removeRow rowIndex)}}
                                         >
                                             <FaIcon @icon="xmark" class="w-3 h-3" />
@@ -316,13 +316,13 @@
                                             </div>
                                         {{/each}}
                                         {{#if (eq this.tableColumns.length 0)}}
-                                            <p class="text-xs text-gray-400 text-center py-1">Define columns first.</p>
+                                            <p class="text-xs text-gray-400 text-center py-1">{{t "literal.ember-ui.define-columns-first"}}</p>
                                         {{/if}}
                                     </div>
                                 </div>
                             {{/each}}
                             {{#if (eq this.tableRows.length 0)}}
-                                <p class="text-xs text-gray-400 dark:text-gray-500 text-center py-2">No rows yet.</p>
+                                <p class="text-xs text-gray-400 dark:text-gray-500 text-center py-2">{{t "literal.ember-ui.no-rows-yet"}}</p>
                             {{/if}}
                             <button
                                 type="button"
@@ -330,7 +330,7 @@
                                 {{on "click" this.addRow}}
                             >
                                 <FaIcon @icon="plus" class="w-3 h-3" />
-                                <span>Add row</span>
+                                <span>{{t "literal.ember-ui.add-row"}}</span>
                             </button>
                         </div>
                     {{/if}}
@@ -340,25 +340,25 @@
 
             {{! Table Style }}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Table Style"
+                @title={{t "literal.ember-ui.table-style"}}
                 @icon="palette"
                 @isOpen={{this.isSectionOpen "table-style"}}
                 @onToggle={{fn this.toggleSection "table-style"}}
             >
                 <div class="grid grid-cols-2 gap-2">
-                    <TemplateBuilder::PropertiesPanel::Field @label="Header BG">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.header-bg"}}>
                         <input type="color" class="tb-color-input" value={{this.element.header_background}} {{on "input" (fn this.updateProp "header_background")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Header Text">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.header-text"}}>
                         <input type="color" class="tb-color-input" value={{this.element.header_color}} {{on "input" (fn this.updateProp "header_color")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Border Color">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.border-color"}}>
                         <input type="color" class="tb-color-input" value={{this.element.border_color}} {{on "input" (fn this.updateProp "border_color")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Cell Padding">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.cell-padding"}}>
                         <input type="number" class="tb-input" value={{this.element.cell_padding}} min="0" {{on "change" (fn this.updateNumericProp "cell_padding")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Row Alt Color" @span="2">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.row-alt-color"}} @span="2">
                         <input type="color" class="tb-color-input" value={{this.element.row_alt_color}} {{on "input" (fn this.updateProp "row_alt_color")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
                 </div>
@@ -368,22 +368,22 @@
         {{! QR CODE / BARCODE SECTION }}
         {{#if (or this.isQrCode this.isBarcode)}}
             <TemplateBuilder::PropertiesPanel::Section
-                @title={{if this.isQrCode "QR Code" "Barcode"}}
+                @title={{if this.isQrCode (t "literal.ember-ui.qr-code") (t "literal.ember-ui.barcode")}}
                 @icon={{if this.isQrCode "qrcode" "barcode"}}
                 @isOpen={{this.isSectionOpen "code"}}
                 @onToggle={{fn this.toggleSection "code"}}
             >
                 <div class="space-y-2">
-                    <TemplateBuilder::PropertiesPanel::Field @label="Value">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.value"}}>
                         <div class="flex space-x-1">
                             <input type="text" class="tb-input flex-1" placeholder="{order.tracking_number}" value={{this.element.value}} {{on "change" (fn this.updateProp "value")}} />
-                            <button type="button" class="tb-icon-btn" title="Insert variable" {{on "click" (fn this.openVariablePicker "value")}}>
+                            <button type="button" class="tb-icon-btn" title={{t "literal.ember-ui.insert-variable"}} {{on "click" (fn this.openVariablePicker "value")}}>
                                 <FaIcon @icon="code" class="w-3 h-3" />
                             </button>
                         </div>
                     </TemplateBuilder::PropertiesPanel::Field>
                     {{#if this.isBarcode}}
-                        <TemplateBuilder::PropertiesPanel::Field @label="Format">
+                        <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.format"}}>
                             <select class="tb-input" {{on "change" (fn this.updateProp "barcode_format")}}>
                                 <option value="CODE128" selected={{eq this.element.barcode_format "CODE128"}}>CODE128</option>
                                 <option value="CODE39"  selected={{eq this.element.barcode_format "CODE39"}}>CODE39</option>
@@ -400,19 +400,19 @@
         {{! LINE SECTION }}
         {{#if this.isLine}}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Line"
+                @title={{t "literal.ember-ui.line"}}
                 @icon="minus"
                 @isOpen={{this.isSectionOpen "line"}}
                 @onToggle={{fn this.toggleSection "line"}}
             >
                 <div class="grid grid-cols-2 gap-2">
-                    <TemplateBuilder::PropertiesPanel::Field @label="Color">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.color"}}>
                         <input type="color" class="tb-color-input" value={{this.element.color}} {{on "input" (fn this.updateProp "color")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Width (px)">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.width-px"}}>
                         <input type="number" class="tb-input" value={{this.element.line_width}} min="1" {{on "change" (fn this.updateNumericProp "line_width")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Style" @span="2">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.style"}} @span="2">
                         <select class="tb-input" {{on "change" (fn this.updateProp "line_style")}}>
                             {{#each this.lineStyleOptions as |opt|}}
                                 <option value={{opt.value}} selected={{eq this.element.line_style opt.value}}>{{opt.label}}</option>
@@ -426,23 +426,23 @@
         {{! SHAPE SECTION }}
         {{#if this.isShape}}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Shape"
+                @title={{t "literal.ember-ui.shape"}}
                 @icon="shapes"
                 @isOpen={{this.isSectionOpen "shape"}}
                 @onToggle={{fn this.toggleSection "shape"}}
             >
                 <div class="grid grid-cols-2 gap-2">
-                    <TemplateBuilder::PropertiesPanel::Field @label="Shape" @span="2">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.shape"}} @span="2">
                         <select class="tb-input" {{on "change" (fn this.updateProp "shape")}}>
                             {{#each this.shapeOptions as |opt|}}
                                 <option value={{opt.value}} selected={{eq this.element.shape opt.value}}>{{opt.label}}</option>
                             {{/each}}
                         </select>
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Fill Color">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.fill-color"}}>
                         <input type="color" class="tb-color-input" value={{this.element.background_color}} {{on "input" (fn this.updateProp "background_color")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Border Radius">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.border-radius"}}>
                         <input type="number" class="tb-input" value={{this.element.border_radius}} min="0" {{on "change" (fn this.updateNumericProp "border_radius")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
                 </div>
@@ -452,13 +452,13 @@
         {{! TEXT STYLE SECTION (text elements only) }}
         {{#if this.isText}}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Text"
+                @title={{t "literal.ember-ui.text"}}
                 @icon="font"
                 @isOpen={{this.isSectionOpen "text"}}
                 @onToggle={{fn this.toggleSection "text"}}
             >
                 <div class="space-y-2">
-                    <TemplateBuilder::PropertiesPanel::Field @label="Font Family">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.font-family"}}>
                         <select class="tb-input" {{on "change" (fn this.updateProp "font_family")}}>
                             {{#each this.fontFamilyOptions as |opt|}}
                                 <option value={{opt.value}} selected={{eq this.element.font_family opt.value}}>{{opt.label}}</option>
@@ -466,27 +466,27 @@
                         </select>
                     </TemplateBuilder::PropertiesPanel::Field>
                     <div class="grid grid-cols-2 gap-2">
-                        <TemplateBuilder::PropertiesPanel::Field @label="Size (px)">
+                        <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.size-px"}}>
                             <input type="number" class="tb-input" value={{this.element.font_size}} min="6" max="200" {{on "change" (fn this.updateNumericProp "font_size")}} />
                         </TemplateBuilder::PropertiesPanel::Field>
-                        <TemplateBuilder::PropertiesPanel::Field @label="Weight">
+                        <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.weight"}}>
                             <select class="tb-input" {{on "change" (fn this.updateProp "font_weight")}}>
                                 {{#each this.fontWeightOptions as |opt|}}
                                     <option value={{opt.value}} selected={{eq this.element.font_weight opt.value}}>{{opt.label}}</option>
                                 {{/each}}
                             </select>
                         </TemplateBuilder::PropertiesPanel::Field>
-                        <TemplateBuilder::PropertiesPanel::Field @label="Line Height">
+                        <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.line-height"}}>
                             <input type="number" class="tb-input" value={{this.element.line_height}} min="0.5" max="5" step="0.1" {{on "change" (fn this.updateNumericProp "line_height")}} />
                         </TemplateBuilder::PropertiesPanel::Field>
-                        <TemplateBuilder::PropertiesPanel::Field @label="Letter Spacing">
+                        <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.letter-spacing"}}>
                             <input type="number" class="tb-input" value={{this.element.letter_spacing}} step="0.5" {{on "change" (fn this.updateNumericProp "letter_spacing")}} />
                         </TemplateBuilder::PropertiesPanel::Field>
                     </div>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Color">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.color"}}>
                         <input type="color" class="tb-color-input" value={{this.element.color}} {{on "input" (fn this.updateProp "color")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Alignment">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.alignment"}}>
                         <div class="flex space-x-1">
                             {{#each this.textAlignOptions as |opt|}}
                                 <button
@@ -499,10 +499,10 @@
                             {{/each}}
                         </div>
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Background">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.background"}}>
                         <input type="color" class="tb-color-input" value={{this.element.background_color}} {{on "input" (fn this.updateProp "background_color")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Padding (px)">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.padding-px"}}>
                         <input type="number" class="tb-input" value={{this.element.padding}} min="0" {{on "change" (fn this.updateNumericProp "padding")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
                 </div>
@@ -512,26 +512,26 @@
         {{! BORDER SECTION (non-line elements) }}
         {{#if this.hasBorderOptions}}
             <TemplateBuilder::PropertiesPanel::Section
-                @title="Border"
+                @title={{t "literal.ember-ui.border"}}
                 @icon="border-all"
                 @isOpen={{this.isSectionOpen "border"}}
                 @onToggle={{fn this.toggleSection "border"}}
             >
                 <div class="grid grid-cols-2 gap-2">
-                    <TemplateBuilder::PropertiesPanel::Field @label="Width (px)">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.width-px"}}>
                         <input type="number" class="tb-input" value={{this.element.border_width}} min="0" {{on "change" (fn this.updateNumericProp "border_width")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Color">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.color"}}>
                         <input type="color" class="tb-color-input" value={{this.element.border_color}} {{on "input" (fn this.updateProp "border_color")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Style">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.style"}}>
                         <select class="tb-input" {{on "change" (fn this.updateProp "border_style")}}>
                             {{#each this.lineStyleOptions as |opt|}}
                                 <option value={{opt.value}} selected={{eq this.element.border_style opt.value}}>{{opt.label}}</option>
                             {{/each}}
                         </select>
                     </TemplateBuilder::PropertiesPanel::Field>
-                    <TemplateBuilder::PropertiesPanel::Field @label="Radius (px)">
+                    <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.radius-px"}}>
                         <input type="number" class="tb-input" value={{this.element.border_radius}} min="0" {{on "change" (fn this.updateNumericProp "border_radius")}} />
                     </TemplateBuilder::PropertiesPanel::Field>
                 </div>
@@ -544,31 +544,31 @@
         {{! ============================================================ }}
 
         <div class="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-900 z-10">
-            <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">Canvas Settings</span>
+            <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">{{t "literal.ember-ui.canvas-settings"}}</span>
         </div>
 
         <div class="p-3 space-y-3">
-            <TemplateBuilder::PropertiesPanel::Field @label="Template Name">
+            <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.template-name"}}>
                 <input type="text" class="tb-input" value={{@template.name}} {{on "change" (fn this.updateTemplateProp "name")}} />
             </TemplateBuilder::PropertiesPanel::Field>
-            <TemplateBuilder::PropertiesPanel::Field @label="Paper Size">
+            <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.paper-size"}}>
                 <select class="tb-input" {{on "change" (fn this.updateTemplateProp "paper_size")}}>
                     {{#each this.paperSizeOptions as |opt|}}
                         <option value={{opt.value}} selected={{eq @template.paper_size opt.value}}>{{opt.label}}</option>
                     {{/each}}
                 </select>
             </TemplateBuilder::PropertiesPanel::Field>
-            <TemplateBuilder::PropertiesPanel::Field @label="Orientation">
+            <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.orientation"}}>
                 <select class="tb-input" {{on "change" (fn this.updateTemplateProp "orientation")}}>
                     {{#each this.orientationOptions as |opt|}}
                         <option value={{opt.value}} selected={{eq @template.orientation opt.value}}>{{opt.label}}</option>
                     {{/each}}
                 </select>
             </TemplateBuilder::PropertiesPanel::Field>
-            <TemplateBuilder::PropertiesPanel::Field @label="Background Color">
+            <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.background-color"}}>
                 <input type="color" class="tb-color-input" value={{@template.background_color}} {{on "input" (fn this.updateTemplateProp "background_color")}} />
             </TemplateBuilder::PropertiesPanel::Field>
-            <TemplateBuilder::PropertiesPanel::Field @label="Description">
+            <TemplateBuilder::PropertiesPanel::Field @label={{t "literal.ember-ui.description"}}>
                 <textarea class="tb-input w-full min-h-16 resize-none" {{on "input" (fn this.updateTemplateProp "description" value="target.value")}}>{{@template.description}}</textarea>
             </TemplateBuilder::PropertiesPanel::Field>
         </div>

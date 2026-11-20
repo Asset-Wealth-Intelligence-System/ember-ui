@@ -27,6 +27,7 @@ import { inject as service } from '@ember/service';
  * </ScheduleCalendar>
  */
 export default class ScheduleCalendarComponent extends Component {
+    @service intl;
     @service scheduling;
     @service notifications;
 
@@ -82,7 +83,7 @@ export default class ScheduleCalendarComponent extends Component {
         return this.args.items.map((item) => ({
             id: item.id,
             resourceId: item.assignee_uuid,
-            title: item.title || 'Scheduled Item',
+            title: item.title || this.intl.t('literal.ember-ui.scheduled-item'),
             start: item.start_at,
             end: item.end_at,
             backgroundColor: this.getEventColor(item),
@@ -138,7 +139,7 @@ export default class ScheduleCalendarComponent extends Component {
             }
         } catch (error) {
             info.revert();
-            this.notifications.error('Failed to update schedule item');
+            this.notifications.error(this.intl.t('literal.ember-ui.failed-to-update-schedule-item'));
         }
     }
 

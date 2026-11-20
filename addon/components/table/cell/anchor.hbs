@@ -15,6 +15,6 @@
     {{#if (has-block)}}
         {{yield}}
     {{else}}
-        <span class={{@column.anchorSpanClass}}>{{or @value @column.anchorText "-"}}</span>
+        <span class={{@column.anchorSpanClass}}>{{#if @column.translate}}{{t-literal (or @value @column.anchorText "-") ns=(or @column.translateNamespace "data")}}{{else}}{{or @value @column.anchorText "-"}}{{/if}}</span>
     {{/if}}
 </a>

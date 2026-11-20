@@ -23,6 +23,7 @@ const TAB_ADDED = 'added';
  *     registry slug to avoid the identity-map collision.
  */
 export default class DashboardWidgetPanelComponent extends Component {
+    @service intl;
     @service('universe/widget-service') widgetService;
     @service notifications;
 
@@ -80,7 +81,7 @@ export default class DashboardWidgetPanelComponent extends Component {
     get groupedWidgets() {
         const groups = new Map();
         for (const w of this.filteredWidgets) {
-            const key = w.category || 'General';
+            const key = w.category || this.intl.t('literal.ember-ui.general');
             if (!groups.has(key)) groups.set(key, []);
             groups.get(key).push(w);
         }

@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import interact from 'interactjs';
 
+import { inject as service } from '@ember/service';
 /**
  * TemplateBuilderElementRendererComponent
  *
@@ -39,6 +40,7 @@ import interact from 'interactjs';
  * @argument {Function} onResize     - Called with (uuid, { x, y, width, height }) after resize ends
  */
 export default class TemplateBuilderElementRendererComponent extends Component {
+    @service intl;
     /** @type {import('interactjs').Interactable|null} */
     _interactable = null;
 
@@ -382,7 +384,7 @@ export default class TemplateBuilderElementRendererComponent extends Component {
 
     get codeLabel() {
         const el = this.args.element;
-        return el.value ?? (this.isQrCode ? 'QR Code' : 'Barcode');
+        return el.value ?? (this.isQrCode ? this.intl.t('literal.ember-ui.qr-code') : this.intl.t('literal.ember-ui.barcode'));
     }
 
     // ── Private helpers ───────────────────────────────────────────────────────

@@ -45,7 +45,7 @@
                         {{/if}}
                     {{/each}}
                 {{else}}
-                    <div class="{{@item.class}}">{{@item.text}}</div>
+                    <div class="{{@item.class}}">{{t-literal @item.text}}</div>
                 {{/if}}
             {{/if}}
         </div>
@@ -61,7 +61,7 @@
             {{#if @item.intl}}
                 <span>{{t @item.intl}}</span>
             {{else}}
-                <span>{{@item.text}}</span>
+                <span>{{t-literal @item.text}}</span>
             {{/if}}
         </LinkTo>
     </div>
@@ -82,7 +82,7 @@
             {{#if @item.intl}}
                 <span>{{t @item.intl}}</span>
             {{else}}
-                <span>{{@item.text}}</span>
+                <span>{{t-literal @item.text}}</span>
             {{/if}}
         </a>
     </div>
@@ -97,7 +97,7 @@
             {{#if @item.intl}}
                 <span>{{t @item.intl}}</span>
             {{else}}
-                <span>{{@item.text}}</span>
+                <span>{{t-literal @item.text}}</span>
             {{/if}}
         </a>
     </div>

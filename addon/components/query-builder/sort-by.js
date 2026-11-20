@@ -2,7 +2,9 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
+import { inject as service } from '@ember/service';
 export default class QueryBuilderSortByComponent extends Component {
+    @service intl;
     @tracked selectedSortBy = null;
     @tracked selectedSortDirection = null;
     @tracked sortByItems = [];
@@ -17,8 +19,8 @@ export default class QueryBuilderSortByComponent extends Component {
 
     get directions() {
         return [
-            { value: 'asc', label: 'Ascending', icon: 'arrow-up' },
-            { value: 'desc', label: 'Descending', icon: 'arrow-down' },
+            { value: 'asc', label: this.intl.t('literal.ember-ui.ascending'), icon: 'arrow-up' },
+            { value: 'desc', label: this.intl.t('literal.ember-ui.descending'), icon: 'arrow-down' },
         ];
     }
 
@@ -56,7 +58,7 @@ export default class QueryBuilderSortByComponent extends Component {
         const columnsToUse = this.args.allSelectedColumns || this.args.selectedColumns || [];
 
         if (!columnsToUse.length) {
-            return 'Select columns first to enable sorting';
+            return this.intl.t('literal.ember-ui.select-columns-first-to-enable-sorting');
         }
 
         return null;

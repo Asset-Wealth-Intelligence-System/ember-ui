@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class QueryBuilderComputedColumnsComponent extends Component {
+    @service intl;
     @service modalsManager;
     @tracked computedColumns = [];
 
@@ -44,8 +45,8 @@ export default class QueryBuilderComputedColumnsComponent extends Component {
 
     @action openEditor(computedColumn = null) {
         this.modalsManager.show('modals/query-builder-computed-column-editor', {
-            title: computedColumn ? 'Edit Computed Column' : 'Add Computed Column',
-            acceptButtonText: computedColumn ? 'Update' : 'Add',
+            title: computedColumn ? this.intl.t('literal.ember-ui.edit-computed-column-fc8f0') : this.intl.t('literal.ember-ui.add-computed-column'),
+            acceptButtonText: computedColumn ? this.intl.t('literal.ember-ui.update') : 'Add',
             computedColumn,
             tableName: this.args.tableName ?? this.args.table?.name,
             keepOpen: true,

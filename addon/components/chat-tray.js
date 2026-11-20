@@ -7,6 +7,7 @@ import { task } from 'ember-concurrency';
 import noop from '../utils/noop';
 
 export default class ChatTrayComponent extends Component {
+    @service intl;
     @service chat;
     @service socket;
     @service fetch;
@@ -83,7 +84,7 @@ export default class ChatTrayComponent extends Component {
             return this.selectedUsers.map((user) => user.name).join(', ');
         }
 
-        return 'Untitled Chat';
+        return this.intl.t('literal.ember-ui.untitled-chat');
     }
 
     listenAllChatChannels(channels) {
@@ -213,8 +214,8 @@ export default class ChatTrayComponent extends Component {
 
     @action removeChannel(chatChannelRecord) {
         this.modalsManager.confirm({
-            title: `Are you sure you wish to end this chat (${chatChannelRecord.title})?`,
-            body: 'Once this chat is ended, it will no longer be accessible for anyone.',
+            title: this.intl.t('literal.ember-ui.are-you-sure-you-wish-to-end-this-chat', { title: chatChannelRecord.title }),
+            body: this.intl.t('literal.ember-ui.once-this-chat-is-ended-it-will-no-longer-be-acc-ab693'),
             confirm: (modal) => {
                 modal.startLoading();
 
@@ -274,7 +275,7 @@ export default class ChatTrayComponent extends Component {
             this.openChannel(chatChannelRecord);
             this.reloadChannels({ relisten: true });
         } catch (error) {
-            this.notifications.error(error.message ?? 'Unable to create chat.');
+            this.notifications.error(error.message ?? this.intl.t('literal.ember-ui.unable-to-create-chat'));
         }
     }
 

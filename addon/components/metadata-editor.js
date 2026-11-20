@@ -72,6 +72,7 @@ class MetadataRow {
 }
 
 export default class MetadataEditorComponent extends Component {
+    @service intl;
     @service modalsManager;
     @tracked rows = [];
     @tracked filterText = '';
@@ -83,7 +84,7 @@ export default class MetadataEditorComponent extends Component {
     }
 
     get label() {
-        return this.args.label ?? 'Metadata';
+        return this.args.label ?? this.intl.t('literal.ember-ui.metadata');
     }
 
     get allowBoolean() {
@@ -217,9 +218,9 @@ export default class MetadataEditorComponent extends Component {
 
     @action preview() {
         this.modalsManager.show('modals/view-raw-metadata', {
-            title: 'Preview metadata',
+            title: this.intl.t('literal.ember-ui.preview-metadata'),
             metadata: this.getOutput(),
-            acceptButtonText: 'Done',
+            acceptButtonText: this.intl.t('literal.ember-ui.done'),
             hideDeclineButton: true,
         });
     }
@@ -245,17 +246,17 @@ export default class MetadataEditorComponent extends Component {
 
     #validateKey(key, allKeys, currentId) {
         if (isEmpty(key)) {
-            return 'Key is required';
+            return this.intl.t('literal.ember-ui.key-is-required');
         }
 
         if (!/^[a-z][a-z0-9_]*$/.test(key)) {
-            return 'Must be snake_case (start with a letter, a-z0-9_)';
+            return this.intl.t('literal.ember-ui.must-be-snake-case-start-with-a-letter-a-z0-9');
         }
 
         const duplicateExists = allKeys.some(({ key: otherKey, id }) => id !== currentId && otherKey === key);
 
         if (duplicateExists) {
-            return 'Key must be unique';
+            return this.intl.t('literal.ember-ui.key-must-be-unique');
         }
 
         return null;

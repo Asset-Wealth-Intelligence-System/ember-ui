@@ -1,24 +1,24 @@
 <div class="rounded-md border border-gray-200 dark:border-gray-700 shadow-sm flex-1">
     <div class="flex flex-row items-center justify-between rounded-t-md px-4 py-2 bg-gray-300 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div>
-            <div class="font-semibold text-sm">Query Builder</div>
+            <div class="font-semibold text-sm">{{t "literal.ember-ui.query-builder"}}</div>
         </div>
         <div class="flex flex-row space-x-2">
-            <Button @type="danger" @icon="trash" @text="Clear" @size="xs" @onClick={{or @onClear (noop)}} />
-            <Button @type="magic" @icon="play" @text="Execute Query" @size="xs" @onClick={{or @onExecute (noop)}} />
-            <Button @type="primary" @icon="save" @text="Save Report" @size="xs" @onClick={{or @onSave (noop)}} />
+            <Button @type="danger" @icon="trash" @text={{t "literal.ember-ui.clear"}} @size="xs" @onClick={{or @onClear (noop)}} />
+            <Button @type="magic" @icon="play" @text={{t "literal.ember-ui.execute-query"}} @size="xs" @onClick={{or @onExecute (noop)}} />
+            <Button @type="primary" @icon="save" @text={{t "literal.ember-ui.save-report"}} @size="xs" @onClick={{or @onSave (noop)}} />
         </div>
     </div>
     <div class="px-4 py-2">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-2">
             <div class="lg:col-span-2">
-                <InputGroup @name="Primary Table">
+                <InputGroup @name={{t "literal.ember-ui.primary-table"}}>
                     <div class="fleetbase-model-select fleetbase-power-select ember-model-select">
                         <PowerSelect
                             @options={{@tables}}
                             @selected={{this.primaryTable}}
                             @onChange={{fn (mut this.primaryTable)}}
-                            @placeholder="Select a table..."
+                            @placeholder={{t "literal.ember-ui.select-a-table"}}
                             @triggerClass="form-select form-input"
                             as |option|
                         >
@@ -31,7 +31,7 @@
                 </InputGroup>
             </div>
             <div class="lg:col-span-3">
-                <InputGroup @name="Select Columns" />
+                <InputGroup @name={{t "literal.ember-ui.select-columns"}} />
             </div>
         </div>
     </div>

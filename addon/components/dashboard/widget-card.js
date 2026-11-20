@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 
+import { inject as service } from '@ember/service';
 /**
  * Single card in the widget picker.
  *
@@ -8,6 +9,7 @@ import Component from '@glimmer/component';
  *                          @onHover={{fn}} @onUnhover={{fn}} />
  */
 export default class DashboardWidgetCardComponent extends Component {
+    @service intl;
     get isAdded() {
         return (this.args.addedCount ?? 0) > 0;
     }
@@ -32,13 +34,13 @@ export default class DashboardWidgetCardComponent extends Component {
 
     get addedBadgeText() {
         const n = this.args.addedCount ?? 0;
-        return n > 1 ? `On dashboard ×${n}` : 'On dashboard';
+        return n > 1 ? this.intl.t('literal.ember-ui.on-dashboard', { n: n }) : this.intl.t('literal.ember-ui.on-dashboard-d66b2');
     }
 
     /** Compact inline "Added" indicator. Falls back to "Added" for 1, "Added ×N" for >1. */
     get addedShortBadge() {
         const n = this.args.addedCount ?? 0;
-        return n > 1 ? `Added ×${n}` : 'Added';
+        return n > 1 ? this.intl.t('literal.ember-ui.added', { n: n }) : this.intl.t('literal.ember-ui.added-f29dd');
     }
 
     /** Subtle Tailwind chip colour driven by the registry `category`. */

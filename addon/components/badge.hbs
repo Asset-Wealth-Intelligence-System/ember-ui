@@ -13,9 +13,9 @@
         {{else}}
             {{#unless @hideText}}
                 {{#if @disableHumanize}}
-                    {{or @text @status}}
+                    {{t-literal (or @text @status) ns="status"}}
                 {{else}}
-                    {{safe-humanize (or @text @status)}}
+                    {{t-literal (safe-humanize (or @text @status)) ns="status"}}
                 {{/if}}
             {{/unless}}
         {{/if}}

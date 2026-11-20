@@ -6,6 +6,7 @@ import { later } from '@ember/runloop';
 import { task } from 'ember-concurrency';
 
 export default class ChatWindowComponent extends Component {
+    @service intl;
     @service chat;
     @service socket;
     @service currentUser;
@@ -161,10 +162,10 @@ export default class ChatWindowComponent extends Component {
     @action removeParticipant(participant) {
         const isRemovingSelf = participant.id === this.sender.id;
         this.modalsManager.confirm({
-            title: isRemovingSelf ? 'Are you sure you would like to leave this chat?' : `Are you sure you wish to remove this participant (${participant.name}) from the chat?`,
+            title: isRemovingSelf ? this.intl.t('literal.ember-ui.are-you-sure-you-would-like-to-leave-this-chat') : this.intl.t('literal.ember-ui.are-you-sure-you-wish-to-remove-this-participant-8f66b', { name: participant.name }),
             body: isRemovingSelf
-                ? 'Once you leave this chat you will not be able to access this chat unless you are added as a participant again'
-                : 'Proceeding remove this participant from the chat.',
+                ? this.intl.t('literal.ember-ui.once-you-leave-this-chat-you-will-not-be-able-to-653a5')
+                : this.intl.t('literal.ember-ui.proceeding-remove-this-participant-from-the-chat'),
             confirm: (modal) => {
                 modal.startLoading();
                 if (isRemovingSelf) {
@@ -178,8 +179,8 @@ export default class ChatWindowComponent extends Component {
 
     @action editChatName() {
         this.modalsManager.show('modals/edit-chat-name', {
-            title: 'Edit chat channel name',
-            acceptButtonText: 'Save Changes',
+            title: this.intl.t('literal.ember-ui.edit-chat-channel-name'),
+            acceptButtonText: this.intl.t('literal.ember-ui.save-changes'),
             acceptButtonIcon: 'save',
             channelName: this.channel.name,
             confirm: (modal) => {
@@ -188,7 +189,7 @@ export default class ChatWindowComponent extends Component {
                     return this.chat.updateChatChannel(this.channel, { name: modal.getOption('channelName') });
                 }
 
-                this.notifications.warning('Name required to save changes.');
+                this.notifications.warning(this.intl.t('literal.ember-ui.name-required-to-save-changes'));
             },
         });
     }

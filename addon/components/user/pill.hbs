@@ -1,8 +1,8 @@
 <Pill
     @resource={{this.resource}}
     @imageSrc={{avatar-url this.resource.avatar_url}}
-    @titleFallback={{or @titleFallback "No user"}}
-    @subtitle={{n-a this.resource.email (if this.resource "No email" "-")}}
+    @titleFallback={{or @titleFallback (t "literal.ember-ui.no-user")}}
+    @subtitle={{n-a this.resource.email (if this.resource (t "literal.ember-ui.no-email") "-")}}
     @fallbackImageType="userImage"
     @noTooltip={{not this.resource}}
     @onClick={{@onClick}}

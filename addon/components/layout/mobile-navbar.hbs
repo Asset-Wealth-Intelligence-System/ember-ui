@@ -8,14 +8,14 @@
                             <FaIcon @icon={{menuItem.icon}} @size="sm" />
                         </div>
                         <div>
-                            <span>{{menuItem.title}}</span>
+                            <span>{{t-literal menuItem.title}}</span>
                         </div>
                     </LinkToExternal>
                 {{/each}}
             </div>
             <a href="javascript:;" class="next-mobile-navbar-tab-item menu-toggle" role="menuitem" {{on "click" this.toggleSidebar}}>
                 <FaIcon @icon="bars" @size="lg" class="text-gray-800 dark:text-gray-100" />
-                <span>Menu</span>
+                <span>{{t "literal.ember-ui.menu"}}</span>
             </a>
         </div>
     </div>

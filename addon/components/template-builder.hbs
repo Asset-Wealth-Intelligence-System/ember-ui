@@ -43,7 +43,7 @@
                     {{on "click" (fn this.setLeftPanelTab "layers")}}
                 >
                     <FaIcon @icon="layer-group" class="w-3 h-3" />
-                    <span>Layers</span>
+                    <span>{{t "literal.ember-ui.layers"}}</span>
                 </button>
                 <button
                     type="button"
@@ -54,7 +54,7 @@
                     {{on "click" (fn this.setLeftPanelTab "queries")}}
                 >
                     <FaIcon @icon="database" class="w-3 h-3" />
-                    <span>Queries</span>
+                    <span>{{t "literal.ember-ui.queries"}}</span>
                     {{#if this.queries.length}}
                         <span class="ml-0.5 px-1 py-0 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-xs leading-4">{{this.queries.length}}</span>
                     {{/if}}

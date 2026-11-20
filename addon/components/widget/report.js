@@ -5,6 +5,7 @@ import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
 
 export default class WidgetReportComponent extends Component {
+    @service intl;
     @service store;
     @service modalsManager;
     @service notifications;
@@ -23,8 +24,8 @@ export default class WidgetReportComponent extends Component {
 
     @action selectReport() {
         this.modalsManager.show('modals/find-select-report', {
-            title: 'Select report',
-            acceptButtonText: 'Confirm',
+            title: this.intl.t('literal.ember-ui.select-report-f83c2'),
+            acceptButtonText: this.intl.t('literal.ember-ui.confirm'),
             limit: 1,
             selected: this.selectedReports,
             onChange: ([selectedReport] = []) => {

@@ -6,13 +6,13 @@
             {{n-a @value}}
         {{/if}}
     </span>
-    <Button @text={{get-default-value @buttonText "Click to reveal"}} @size="xs" @wrapperClass="click-to-reveal--button" @onClick={{this.reveal}} @isLoading={{this.isLoading}} />
+    <Button @text={{get-default-value @buttonText (t "literal.ember-ui.click-to-reveal")}} @size="xs" @wrapperClass="click-to-reveal--button" @onClick={{this.reveal}} @isLoading={{this.isLoading}} />
     {{#if this.canClickToCopy}}
         <span class="click-to-reveal--tooltip">
             {{#if this.isCopied}}
-                Copied!
+                {{t "literal.ember-ui.copied"}}
             {{else}}
-                Click to copy
+                {{t "literal.ember-ui.click-to-copy"}}
             {{/if}}
         </span>
     {{/if}}

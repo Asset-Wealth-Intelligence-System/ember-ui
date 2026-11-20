@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class ChatTrayConversationRowComponent extends Component {
+    @service intl;
     @service currentUser;
 
     get channel() {
@@ -30,14 +31,14 @@ export default class ChatTrayConversationRowComponent extends Component {
     }
 
     get title() {
-        return this.channel?.title || this.channel?.name || 'Untitled Chat';
+        return this.channel?.title || this.channel?.name || this.intl.t('literal.ember-ui.untitled-chat');
     }
 
     get preview() {
         const lastMessage = this.lastMessage;
 
         if (!lastMessage) {
-            return 'No messages yet';
+            return this.intl.t('literal.ember-ui.no-messages-yet');
         }
 
         if (lastMessage.content) {
@@ -45,7 +46,7 @@ export default class ChatTrayConversationRowComponent extends Component {
         }
 
         const attachmentCount = lastMessage.attachments?.length ?? 0;
-        return attachmentCount > 0 ? `${attachmentCount} attachment${attachmentCount === 1 ? '' : 's'}` : 'Sent a message';
+        return attachmentCount > 0 ? `${attachmentCount} attachment${attachmentCount === 1 ? '' : 's'}` : this.intl.t('literal.ember-ui.sent-a-message');
     }
 
     get senderName() {

@@ -46,7 +46,7 @@ export default class LayoutResourcePanelComponent extends Component {
 
     get resourceType() {
         const modelName = getModelName(this.resource);
-        return titleize(modelName) ?? 'Resource';
+        return titleize(modelName) ?? this.intl.t('literal.ember-ui.resource');
     }
 
     get saveButtonText() {
@@ -55,10 +55,10 @@ export default class LayoutResourcePanelComponent extends Component {
         }
 
         if (this.resource.isNew) {
-            return `Create new ${this.resourceType}`;
+            return this.intl.t('literal.ember-ui.create-new', { resourceType: this.resourceType });
         }
 
-        return 'Save Changes';
+        return this.intl.t('literal.ember-ui.save-changes');
     }
 
     constructor() {
@@ -115,7 +115,7 @@ export default class LayoutResourcePanelComponent extends Component {
             return;
         }
 
-        this.notifications.success(`${this.resourceType} ${this.resourceName ? `(${this.resourceName})` : ''} saved successfully.`);
+        this.notifications.success(this.intl.t('literal.ember-ui.saved-successfully', { resourceType: this.resourceType, value: this.resourceName ? `(${this.resourceName})` : '' }));
         contextComponentCallback(this, 'onAfterSave', this.resource);
     }
 }

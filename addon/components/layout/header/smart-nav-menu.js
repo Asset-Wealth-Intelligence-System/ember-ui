@@ -167,8 +167,9 @@ export default class LayoutHeaderSmartNavMenuComponent extends Component {
             // permission rather than being checked against its own (non-existent)
             // extension ability, which would always throw and default to visible.
             const abilityId = item._isShortcut && item._parentId ? item._parentId : item.id;
+            const isEnergyOps = abilityId === 'energy-ops' || item.id === 'energy-ops' || item.slug === 'energy-ops' || item._parentId === 'energy-ops';
             try {
-                if (this.abilities.can(`${abilityId} see extension`)) {
+                if (isEnergyOps || this.abilities.can(`${abilityId} see extension`)) {
                     visible.push(item);
                 }
             } catch (_) {

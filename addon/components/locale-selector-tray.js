@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { getOwner } from '@ember/application';
 import { task } from 'ember-concurrency';
 import calculatePosition from 'ember-basic-dropdown/utils/calculate-position';
 
@@ -70,6 +71,11 @@ export default class LocaleSelectorTrayComponent extends Component {
     @action changeLocale(selectedLocale) {
         this.currentLocale = selectedLocale;
         this.intl.setLocale(selectedLocale);
+        // Persist locally so the next boot applies the locale before the user is loaded
+        const currentUser = getOwner(this).lookup('service:current-user');
+        if (currentUser && typeof currentUser.setLocale === 'function') {
+            currentUser.setLocale(selectedLocale);
+        }
         // Persist to server
         this.saveUserLocale.perform(selectedLocale);
     }

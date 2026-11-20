@@ -10,6 +10,7 @@ import { parseISO, isDate, isValid, format, formatDistanceToNow } from 'date-fns
 import smartHumanize from '../utils/smart-humanize';
 
 export default class ActivityLogComponent extends Component {
+    @service intl;
     @service store;
     @tracked activities = [];
     @tracked dateFilter = null;
@@ -116,14 +117,14 @@ export default class ActivityLogComponent extends Component {
         const inlineChange = changeCount === 1 ? this.#inlineChangeSummary(changes[0]) : null;
         const objectLabel = this.#objectLabel(activity, subjectTypeLabel);
         const targetPhrase = shouldShowSubjectContext ? this.#targetPhrase(activity, subjectTypeLabel, event) : null;
-        const actorName = causer?.name ?? 'Someone';
+        const actorName = causer?.name ?? this.intl.t('literal.ember-ui.someone');
 
         const badge = this.#eventBadge(event);
 
         return {
             key: `${dayKey}-${idx}`,
             actor: {
-                name: causer?.name ?? 'Unknown',
+                name: causer?.name ?? this.intl.t('literal.ember-ui.unknown'),
                 avatarUrl: causer?.avatar_url ?? null,
                 initial: this.#initial(actorName),
                 raw: causer,
@@ -192,13 +193,13 @@ export default class ActivityLogComponent extends Component {
         // Tailwind classes set to feel like Fleetbase pills
         switch (event) {
             case 'created':
-                return { text: 'Created', class: 'bg-green-50 text-green-700 ring-green-200 dark:bg-green-900/20 dark:text-green-300 dark:ring-green-800' };
+                return { text: this.intl.t('literal.ember-ui.created'), class: 'bg-green-50 text-green-700 ring-green-200 dark:bg-green-900/20 dark:text-green-300 dark:ring-green-800' };
             case 'deleted':
-                return { text: 'Deleted', class: 'bg-red-50 text-red-700 ring-red-200 dark:bg-red-900/20 dark:text-red-300 dark:ring-red-800' };
+                return { text: this.intl.t('literal.ember-ui.deleted'), class: 'bg-red-50 text-red-700 ring-red-200 dark:bg-red-900/20 dark:text-red-300 dark:ring-red-800' };
             case 'restored':
-                return { text: 'Restored', class: 'bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:ring-blue-800' };
+                return { text: this.intl.t('literal.ember-ui.restored'), class: 'bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:ring-blue-800' };
             default:
-                return { text: 'Updated', class: 'bg-indigo-50 text-indigo-700 ring-indigo-200 dark:bg-indigo-900/20 dark:text-indigo-300 dark:ring-indigo-800' };
+                return { text: this.intl.t('literal.ember-ui.updated'), class: 'bg-indigo-50 text-indigo-700 ring-indigo-200 dark:bg-indigo-900/20 dark:text-indigo-300 dark:ring-indigo-800' };
         }
     }
 
@@ -276,8 +277,8 @@ export default class ActivityLogComponent extends Component {
     }
 
     #subjectDisplay(subject) {
-        if (!subject) return 'Unknown';
-        return subject.display_name || subject.name || subject.title || subject.address || subject.tracking || subject.public_id || subject.uuid || 'Unknown';
+        if (!subject) return this.intl.t('literal.ember-ui.unknown');
+        return subject.display_name || subject.name || subject.title || subject.address || subject.tracking || subject.public_id || subject.uuid || this.intl.t('literal.ember-ui.unknown');
     }
 
     #objectLabel(activity, subjectTypeLabel) {

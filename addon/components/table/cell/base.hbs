@@ -5,6 +5,8 @@
         {{else}}
             {{#if @column.humanize}}
                 {{smart-humanize (or @value "-")}}
+            {{else if @column.translate}}
+                {{t-literal (or @value "-") ns=(or @column.translateNamespace "data")}}
             {{else}}
                 {{or @value "-"}}
             {{/if}}
